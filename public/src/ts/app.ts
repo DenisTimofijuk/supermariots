@@ -1,28 +1,46 @@
 import SpriteSheet from "./SpriteSheet.js";
-import { loadImage, loadLevel, Background_Element } from "./loaders.js";
+import { loadLevel } from "./loaders.js";
+import { loadMarioSprite, loadBackgroundSprites } from "./sprites.js";
+import Compositor from "./compositor.js";
+import { createBackgroundLayer } from "./layers.js";
 
 const canvas = document.getElementById('gameScreen') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
 
-function drawBackground(background:Background_Element, ctx:CanvasRenderingContext2D, sprites:SpriteSheet) {
-    background.ranges.forEach(([x1, x2, y1, y2]) => {
-        for (let x = x1; x < x2; ++x) {
-            for (let y = y1; y < y2; ++y) {
-                sprites.drawTile(background.tile, ctx, x, y);
-            };
-        };
-    });
+
+function createSpriteLayer(sprites:SpriteSheet, pos: {x:number, y:number}) {
+    return function drawSpriteLayer(context:CanvasRenderingContext2D) {
+        sprites.draw('idle', context, pos.x, pos.y);
+    }
 }
 
-loadImage('../img/tileset.png').then(image => {
-    const sprites = new SpriteSheet(image, 16, 16);
-    sprites.define('ground', 0, 0);
-    sprites.define('sky', 3, 23);
+Promise.all([
+    loadMarioSprite(),
+    loadBackgroundSprites(),
+    loadLevel('1-1')
+]).then(([MarioSprite, backgroundSprites, level]) => {
+    const comp = new Compositor();
+    const backgroundLayer = createBackgroundLayer(level.background, backgroundSprites);
+    comp.layers.push(backgroundLayer);
 
-    loadLevel('1-1').then(level => {
-        level.background.forEach(background => {
-            drawBackground(background, ctx, sprites);
-        })
-    })
+    const pos = {
+        x: 64,
+        y: 64
+    };
+
+    const spriteLayer = createSpriteLayer(MarioSprite, pos);
+    comp.layers.push(spriteLayer);
+
+    function update() {
+        comp.draw(ctx);
+        MarioSprite.draw('idle', ctx, pos.x, pos.y); 
+        pos.x += 2;
+        pos.y += 2; 
+        
+        requestAnimationFrame(update);
+    }
+
+    update();
+    
 })
