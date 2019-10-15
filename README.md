@@ -22,6 +22,11 @@ npm init;
 npm install serve --save
 npm run start
 ```
+to update npm:
+```bash
+npm install -g npm
+```
+
 ## Source
 https://www.youtube.com/watch?v=g-FpDQ8Eqw8&
 
