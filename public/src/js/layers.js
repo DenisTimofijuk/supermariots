@@ -10,6 +10,11 @@ export function createBackgroundLayer(backgrounds, sprites) {
         context.drawImage(buffer, 0, 0);
     };
 }
+export function createSpriteLayer(entity) {
+    return function drawSpriteLayer(context) {
+        entity.draw(context);
+    };
+}
 function drawBackground(background, ctx, sprites) {
     background.ranges.forEach(([x1, x2, y1, y2]) => {
         for (let x = x1; x < x2; ++x) {

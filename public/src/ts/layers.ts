@@ -1,5 +1,6 @@
 import { Background_Element } from "./loaders.js";
 import SpriteSheet from "./SpriteSheet";
+import Entity from "./entity.js";
 
 export function createBackgroundLayer(backgrounds: Array<Background_Element>, sprites: SpriteSheet) {
     const buffer = document.createElement('canvas');
@@ -15,6 +16,11 @@ export function createBackgroundLayer(backgrounds: Array<Background_Element>, sp
     };
 }
 
+export function createSpriteLayer(entity:Entity) {
+    return function drawSpriteLayer(context: CanvasRenderingContext2D) {
+        entity.draw(context);
+    }
+}
 
 function drawBackground(background: Background_Element, ctx: CanvasRenderingContext2D, sprites: SpriteSheet) {
     background.ranges.forEach(([x1, x2, y1, y2]) => {
