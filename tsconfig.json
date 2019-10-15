@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+      "watch": true,
+      "target": "esnext",
+      "lib": ["dom", "es2017"],
+      "declaration": true,
+      "removeComments": true,
+      "preserveConstEnums": true,
+      "moduleResolution":"node",
+      "sourceMap": true,
+      "outDir": "./public/src/js",
+      "rootDir": "./public/src/ts",
+      "strict":true,
+      "esModuleInterop":true
+  },
+  "include": [
+    "public/src/ts/*.ts",
+    "public/src/ts/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
