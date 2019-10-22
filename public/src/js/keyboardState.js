@@ -5,21 +5,21 @@ export default class KeyboardState {
         this.keyStates = new Map();
         this.keyMap = new Map();
     }
-    addMapping(keyCode, callback) {
-        this.keyMap.set(keyCode, callback);
+    addMapping(code, callback) {
+        this.keyMap.set(code, callback);
     }
     handleEvent(event) {
-        const { keyCode } = event;
-        if (!this.keyMap.has(keyCode)) {
+        const { code } = event;
+        if (!this.keyMap.has(code)) {
             return;
         }
         event.preventDefault();
         const keyStates = event.type === 'keydown' ? PRESSED : RELEASED;
-        if (this.keyStates.get(keyCode) === keyStates) {
+        if (this.keyStates.get(code) === keyStates) {
             return;
         }
-        this.keyStates.set(keyCode, keyStates);
-        var f = this.keyMap.get(keyCode);
+        this.keyStates.set(code, keyStates);
+        var f = this.keyMap.get(code);
         if (f !== undefined) {
             f(keyStates);
         }

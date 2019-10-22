@@ -16,6 +16,7 @@ export default class Entity {
     pendulumWalk: any;
     pos: Vec2;
     vel: Vec2;
+    size: Vec2;
     traits: Array<any>;
     lifeTime: number;
     constructor();

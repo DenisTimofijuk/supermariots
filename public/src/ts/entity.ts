@@ -29,12 +29,14 @@ export default class Entity {
     pendulumWalk: any;
     public pos: Vec2;
     public vel: Vec2;
+    public size: Vec2;
     public traits: Array<any>
     public lifeTime: number
 
     constructor() {
         this.pos = new Vec2(0, 0);
         this.vel = new Vec2(0, 0);
+        this.size = new Vec2(0, 0);
         this.traits = [];
         this.lifeTime = 0;
     }

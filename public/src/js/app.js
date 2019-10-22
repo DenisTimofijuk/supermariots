@@ -1,41 +1,33 @@
 import { loadLevel } from "./loaders.js";
-import { loadBackgroundSprites } from "./sprites.js";
-import Compositor from "./compositor.js";
-import { createBackgroundLayer, createSpriteLayer } from "./layers.js";
+import { createCollisionLayer } from "./layers.js";
 import { createMario } from "./entities.js";
 import Timer from "./timer.js";
-import KeyboardState from "./keyboardState.js";
+import { setUpKeyboard } from "./input.js";
 const canvas = document.getElementById('gameScreen');
 const ctx = canvas.getContext('2d');
 Promise.all([
     createMario(),
-    loadBackgroundSprites(),
     loadLevel('1-1')
-]).then(([mario, backgroundSprites, level]) => {
-    const comp = new Compositor();
-    const backgroundLayer = createBackgroundLayer(level.background, backgroundSprites);
-    comp.layers.push(backgroundLayer);
-    const gravity = 2000;
-    mario.pos.set(64, 180);
-    const SPACE = 32;
-    const input = new KeyboardState();
-    input.addMapping(SPACE, (keyState) => {
-        if (keyState > 0) {
-            mario.jump.start();
-        }
-        else {
-            mario.jump.cancel();
-        }
-    });
+]).then(([mario, level]) => {
+    mario.pos.set(64, 64);
+    createCollisionLayer(level);
+    level.entities.add(mario);
+    const input = setUpKeyboard(mario);
     input.listenTo(window);
-    const spriteLayer = createSpriteLayer(mario);
-    comp.layers.push(spriteLayer);
+    level.comp.layers.push(createCollisionLayer(level));
+    ['mousedown', 'mousemove'].forEach(eventName => {
+        canvas.addEventListener(eventName, event => {
+            const e = event;
+            if (e.buttons === 1) {
+                mario.vel.set(0, 0);
+                mario.pos.set(e.offsetX, e.offsetY);
+            }
+        });
+    });
     const timer = new Timer();
-    const deltaTime = 1 / 60;
     timer.update = function update(deltaTime) {
-        mario.update(deltaTime);
-        comp.draw(ctx);
-        mario.vel.y += gravity * deltaTime;
+        level.update(deltaTime);
+        level.comp.draw(ctx);
     };
     timer.start();
 });

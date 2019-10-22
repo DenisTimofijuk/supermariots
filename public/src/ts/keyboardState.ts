@@ -1,33 +1,32 @@
-type Key_Code = 'ArrowRight' | 'ArrowLeft' | 'ArrowUp' | 'ArrowDown' | number;
 const PRESSED = 1;
 const RELEASED = 0;
 
 export default class KeyboardState {
     keyStates:Map<any, number>
-    keyMap: Map<Key_Code, Function>;
+    keyMap: Map<string, Function>;
     
     constructor() {
         this.keyStates = new Map();
         this.keyMap = new Map();    
     }
 
-    addMapping(keyCode:Key_Code, callback:Function){
-        this.keyMap.set(keyCode, callback);
+    addMapping(code:string, callback:Function){
+        this.keyMap.set(code, callback);
     }
 
     handleEvent(event:KeyboardEvent){
-        const {keyCode} = event;
-        if(!this.keyMap.has(keyCode)){
+        const {code} = event;
+        if(!this.keyMap.has(code)){
             return;
         }
         event.preventDefault();
         const keyStates = event.type === 'keydown' ? PRESSED : RELEASED;
-        if(this.keyStates.get(keyCode) === keyStates){
+        if(this.keyStates.get(code) === keyStates){
             return
         }
-        this.keyStates.set(keyCode, keyStates);
+        this.keyStates.set(code, keyStates);
 
-        var f = this.keyMap.get(keyCode);
+        var f = this.keyMap.get(code);
         if(f !== undefined) {
             f(keyStates);
         }
