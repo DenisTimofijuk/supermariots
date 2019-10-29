@@ -1,5 +1,6 @@
 declare type Mario = 'idle';
-export declare type SpriteSheetNames = 'ground' | 'sky' | Mario;
+export declare type TileName = 'ground' | 'sky' | 'chocolate' | 'bricks' | 'chance';
+export declare type SpriteSheetNames = TileName | Mario;
 export default class SpriteSheet {
     image: HTMLImageElement;
     width: number;

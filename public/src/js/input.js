@@ -1,6 +1,5 @@
 import KeyboardState from "./keyboardState.js";
 export function setUpKeyboard(entity) {
-    const SPACE = 32;
     const input = new KeyboardState();
     input.addMapping('ArrowUp', (keyState) => {
         if (keyState > 0) {

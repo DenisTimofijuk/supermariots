@@ -1,3 +1,5 @@
+import Camera from "./camera.js";
+
 export default class Compositor {
     public layers:Array<Function>;
 
@@ -5,9 +7,9 @@ export default class Compositor {
         this.layers = [];
     }
 
-    draw(context:CanvasRenderingContext2D){
+    draw(context:CanvasRenderingContext2D, camera:Camera){
         this.layers.forEach(layer => {
-            layer(context);
+            layer(context, camera);
         })
     }
 }

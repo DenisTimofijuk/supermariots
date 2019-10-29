@@ -8,13 +8,3 @@ export function loadMarioSprite(): Promise<SpriteSheet> {
         return sprites;
     });
 }
-
-export function loadBackgroundSprites(): Promise<SpriteSheet> {
-    return loadImage('../img/tileset.png').then(image => {
-        const sprites = new SpriteSheet(image, 16, 16);
-        sprites.defineTile('ground', 0, 0);
-        sprites.defineTile('sky', 3, 23);
-
-        return sprites;
-    });
-}
