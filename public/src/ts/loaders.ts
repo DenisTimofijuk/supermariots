@@ -1,6 +1,7 @@
-import SpriteSheet, { SpriteSheetNames, TileName } from "./SpriteSheet.js";
+import SpriteSheet, { SpriteSheetNames, TileName, Mario } from "./SpriteSheet.js";
 import Level from "./level.js";
 import { createBackgroundLayer, createSpriteLayer } from "./layers.js";
+import { createAnim } from "./anim.js";
 
 export function loadImage(url: string): Promise<HTMLImageElement> {
     return new Promise(resolve => {
@@ -12,7 +13,7 @@ export function loadImage(url: string): Promise<HTMLImageElement> {
     });
 }
 
-type json_File_Names = '1-1' | 'overworld';
+type json_File_Names = '1-1' | 'overworld' | 'Mario';
 type TileType = 'ground'
 export interface Background_Element {
     tile: SpriteSheetNames
@@ -61,16 +62,26 @@ type Tile = {
     type: TileType,
     index:[number, number]
 }
-
+type AnimationElement = {
+    name:TileName
+    frameLen:number
+    frames:Array<TileName>
+}
 interface Overworld{
     imageURL:string,
     tileW:number,
     tileH:number,
-    tiles:Array<Tile>
+    tiles:Array<Tile>,
+    animations:Array<AnimationElement>
+}
+
+interface MarioJSON{
+    imageURL:string;
+    frames:Array<{name:Mario, rect:[number, number, number, number]}>
 }
 
 function loadJSON(url:string){
-    return fetch(url).then(r => r.json() as Promise<level_1_1 | Overworld>);
+    return fetch(url).then(r => r.json() as Promise<level_1_1 | Overworld | MarioJSON>);
 }
 
 function loadLevelJSON(url:string){
@@ -78,20 +89,41 @@ function loadLevelJSON(url:string){
 }
 
 function loadSpriteJSON(url:string){
-    return loadJSON(url) as Promise<Overworld>;
+    return loadJSON(url) as Promise<Overworld | MarioJSON>;
 }
 
-function loadSpriteSheet(name:json_File_Names){
+export function loadSpriteSheet(name:json_File_Names){
     return loadSpriteJSON(`../json/sprites/${name}.json`)
     .then(sheetSpec => Promise.all([
         sheetSpec,
         loadImage(sheetSpec.imageURL)
     ]))
     .then(([sheetSpec, image]) => {
-        const sprites = new SpriteSheet(image, sheetSpec.tileW, sheetSpec.tileH);
-        sheetSpec.tiles.forEach(tileSpec => {
-            sprites.defineTile(tileSpec.name, tileSpec.index[0], tileSpec.index[1]);
-        })
+        var sheetSpecOverworld = sheetSpec as Overworld
+        var sheetSpecMarioJSON = sheetSpec as MarioJSON
+
+        const sprites = new SpriteSheet(image, sheetSpecOverworld.tileW, sheetSpecOverworld.tileH);
+
+        if( sheetSpecOverworld.tiles !== undefined ){
+            sheetSpecOverworld.tiles.forEach(tileSpec => {
+                sprites.defineTile(tileSpec.name, tileSpec.index[0], tileSpec.index[1]);
+            })
+        }
+
+        
+        if( sheetSpecMarioJSON.frames !== undefined ){
+            sheetSpecMarioJSON.frames.forEach(frameSpec => {
+                sprites.define(frameSpec.name, ...frameSpec.rect);
+            })
+        }
+
+        if( sheetSpecOverworld.animations !== undefined ){
+            sheetSpecOverworld.animations.forEach(animSpec => {
+                const animation = createAnim(animSpec.frames, animSpec.frameLen);
+                sprites.defineAnim(animSpec.name, animation);
+            })
+        }
+        
         return sprites;
     })
 }

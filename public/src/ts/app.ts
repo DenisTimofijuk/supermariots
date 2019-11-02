@@ -26,10 +26,10 @@ Promise.all([
     input.listenTo(window);
     
     //debugger:
-    level.comp.layers.push(
-        createCollisionLayer(level),
-        createCameraLayer(camera)
-        );
+    //level.comp.layers.push(
+    //    createCollisionLayer(level),
+    //    createCameraLayer(camera)
+    //    );
     //debugger:
     setUpMouseControl(canvas, mario, camera);
 

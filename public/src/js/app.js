@@ -1,5 +1,5 @@
 import { loadLevel } from "./loaders.js";
-import { createCollisionLayer, createCameraLayer } from "./layers.js";
+import { createCollisionLayer } from "./layers.js";
 import { createMario } from "./entities.js";
 import Timer from "./timer.js";
 import { setUpKeyboard } from "./input.js";
@@ -17,7 +17,6 @@ Promise.all([
     level.entities.add(mario);
     const input = setUpKeyboard(mario);
     input.listenTo(window);
-    level.comp.layers.push(createCollisionLayer(level), createCameraLayer(camera));
     setUpMouseControl(canvas, mario, camera);
     const timer = new Timer();
     timer.update = function update(deltaTime) {

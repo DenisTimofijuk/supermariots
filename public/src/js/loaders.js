@@ -1,6 +1,7 @@
 import SpriteSheet from "./SpriteSheet.js";
 import Level from "./level.js";
 import { createBackgroundLayer, createSpriteLayer } from "./layers.js";
+import { createAnim } from "./anim.js";
 export function loadImage(url) {
     return new Promise(resolve => {
         const image = new Image();
@@ -52,17 +53,32 @@ function loadLevelJSON(url) {
 function loadSpriteJSON(url) {
     return loadJSON(url);
 }
-function loadSpriteSheet(name) {
+export function loadSpriteSheet(name) {
     return loadSpriteJSON(`../json/sprites/${name}.json`)
         .then(sheetSpec => Promise.all([
         sheetSpec,
         loadImage(sheetSpec.imageURL)
     ]))
         .then(([sheetSpec, image]) => {
-        const sprites = new SpriteSheet(image, sheetSpec.tileW, sheetSpec.tileH);
-        sheetSpec.tiles.forEach(tileSpec => {
-            sprites.defineTile(tileSpec.name, tileSpec.index[0], tileSpec.index[1]);
-        });
+        var sheetSpecOverworld = sheetSpec;
+        var sheetSpecMarioJSON = sheetSpec;
+        const sprites = new SpriteSheet(image, sheetSpecOverworld.tileW, sheetSpecOverworld.tileH);
+        if (sheetSpecOverworld.tiles !== undefined) {
+            sheetSpecOverworld.tiles.forEach(tileSpec => {
+                sprites.defineTile(tileSpec.name, tileSpec.index[0], tileSpec.index[1]);
+            });
+        }
+        if (sheetSpecMarioJSON.frames !== undefined) {
+            sheetSpecMarioJSON.frames.forEach(frameSpec => {
+                sprites.define(frameSpec.name, ...frameSpec.rect);
+            });
+        }
+        if (sheetSpecOverworld.animations !== undefined) {
+            sheetSpecOverworld.animations.forEach(animSpec => {
+                const animation = createAnim(animSpec.frames, animSpec.frameLen);
+                sprites.defineAnim(animSpec.name, animation);
+            });
+        }
         return sprites;
     });
 }

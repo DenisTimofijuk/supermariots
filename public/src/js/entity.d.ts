@@ -1,4 +1,6 @@
 import { Vec2 } from "./math.js";
+import Go from "./traits/Go.js";
+import Jump from "./traits/jump.js";
 declare type Trait_NAME = 'jump' | 'move' | 'velocity' | 'go' | 'walk' | 'pendulumWalk';
 export declare class Trait {
     NAME: Trait_NAME;
@@ -8,10 +10,10 @@ export declare class Trait {
     update(entiy: Entity, deltaTime: number): void;
 }
 export default class Entity {
-    jump: any;
+    jump: Jump;
     move: any;
     velocity: any;
-    go: any;
+    go: Go;
     walk: any;
     pendulumWalk: any;
     pos: Vec2;

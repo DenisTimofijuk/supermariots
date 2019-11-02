@@ -34,6 +34,7 @@ export default class Level {
 
             entity.vel.y += this.gravity * deltaTime;
         });
+        this.totalTime += deltaTime;
     }
 }
 

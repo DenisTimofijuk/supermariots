@@ -22,6 +22,7 @@ export default class Level {
             this.tileColider.checkY(entity);
             entity.vel.y += this.gravity * deltaTime;
         });
+        this.totalTime += deltaTime;
     }
 }
 //# sourceMappingURL=level.js.map

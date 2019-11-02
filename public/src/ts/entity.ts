@@ -1,4 +1,6 @@
 import { Vec2 } from "./math.js";
+import Go from "./traits/Go.js";
+import Jump from "./traits/jump.js";
 
 type Trait_NAME = 'jump' | 'move' | 'velocity' | 'go' | 'walk' | 'pendulumWalk';
 
@@ -21,10 +23,10 @@ export class Trait {
 
 
 export default class Entity {
-    jump: any;
+    jump!: Jump;
     move: any;
     velocity: any;
-    go: any;
+    go!: Go;
     walk: any;
     pendulumWalk: any;
     public pos: Vec2;
