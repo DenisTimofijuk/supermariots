@@ -1,4 +1,4 @@
-import Entity, { Trait } from "../entity.js"
+import Entity, { Trait, Sides } from "../entity.js"
 
 export default class Jump extends Trait {
     private duration: number
@@ -25,7 +25,15 @@ export default class Jump extends Trait {
     }
 
     start() {
-        this.engageTime = this.duration;
+        this.requestTime = this.gracePeriod;  
+    }
+
+    obstruct(entity: Entity, side: Symbol){
+        if(side === Sides.BOTTOM){
+            this.ready = 1;
+        }else if(side === Sides.TOP){
+            this.cancel();
+        }
     }
 
     cancel() {
@@ -34,9 +42,19 @@ export default class Jump extends Trait {
     }
 
     update(entiy: Entity, deltaTime: number): void {
+        if(this.requestTime > 0){
+            if(this.ready > 0){
+                this.engageTime = this.duration;
+                this.requestTime = 0;
+            }    
+
+            this.requestTime -= deltaTime;
+        }
         if(this.engageTime > 0){
-            entiy.vel.y = -this.velocity;
+            entiy.vel.y = -(this.velocity + Math.abs(entiy.vel.x) * this.speedBoost);
             this.engageTime -= deltaTime;
         }
+
+        this.ready--;
     }
 }

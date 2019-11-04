@@ -1,4 +1,4 @@
-export declare type Mario = 'idle' | 'run-1' | 'run-2' | 'run-3';
+export declare type Mario = 'idle' | 'run-1' | 'run-2' | 'run-3' | 'break' | 'jump';
 export declare type TileName = 'ground' | 'sky' | 'chocolate' | 'bricks' | 'chance' | 'chance-1' | 'chance-2' | 'chance-3';
 export declare type SpriteSheetNames = TileName | Mario;
 declare type Animation = (distance: number) => SpriteSheetNames;

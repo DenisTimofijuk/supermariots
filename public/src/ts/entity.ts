@@ -4,6 +4,11 @@ import Jump from "./traits/jump.js";
 
 type Trait_NAME = 'jump' | 'move' | 'velocity' | 'go' | 'walk' | 'pendulumWalk';
 
+export const Sides ={
+    TOP: Symbol('top'),
+    BOTTOM: Symbol('bottom')
+};
+
 export class Trait {
     public NAME: Trait_NAME
     public speed: number
@@ -23,6 +28,7 @@ export class Trait {
 
 
 export default class Entity {
+    turbo!:Function;
     jump!: Jump;
     move: any;
     velocity: any;
@@ -45,6 +51,12 @@ export default class Entity {
 
     draw(context: CanvasRenderingContext2D) {
 
+    }
+
+    obstruct(side:Symbol){
+        this.traits.forEach(trait => {
+            trait.obstruct(this, side);
+        })
     }
 
     addTrait(trait: Trait): void {

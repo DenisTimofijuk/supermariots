@@ -1,10 +1,9 @@
 import { loadLevel } from "./loaders.js";
-import { createCollisionLayer, createCameraLayer } from "./layers.js";
+import { createCollisionLayer } from "./layers.js";
 import { createMario } from "./entities.js";
 import Timer from "./timer.js";
 import { setUpKeyboard } from "./input.js";
 import Camera from "./camera.js";
-import { setUpMouseControl } from "./debug.js";
 
 const canvas = document.getElementById('gameScreen') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
@@ -31,11 +30,16 @@ Promise.all([
     //    createCameraLayer(camera)
     //    );
     //debugger:
-    setUpMouseControl(canvas, mario, camera);
+    // setUpMouseControl(canvas, mario, camera);
 
     const timer = new Timer()
     timer.update = function update(deltaTime) {
         level.update(deltaTime);
+
+        if(mario.pos.x > 100){
+            camera.pos.x = mario.pos.x - 100;
+        }
+
         level.comp.draw(ctx, camera);
     }
 

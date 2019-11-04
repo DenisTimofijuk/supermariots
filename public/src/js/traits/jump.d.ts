@@ -10,6 +10,7 @@ export default class Jump extends Trait {
     constructor();
     readonly falling: boolean;
     start(): void;
+    obstruct(entity: Entity, side: Symbol): void;
     cancel(): void;
     update(entiy: Entity, deltaTime: number): void;
 }

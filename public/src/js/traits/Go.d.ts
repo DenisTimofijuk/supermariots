@@ -1,9 +1,11 @@
 import Entity, { Trait } from "../entity.js";
 export default class Go extends Trait {
-    speed: number;
+    acceleration: number;
     dir: number;
     distance: number;
     heading: number;
+    dragFactor: number;
+    deceleration: number;
     constructor();
-    update(entiy: Entity, deltaTime: number): void;
+    update(entity: Entity, deltaTime: number): void;
 }

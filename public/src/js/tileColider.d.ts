@@ -1,5 +1,5 @@
-import { Matrix } from "./math";
-import Entity from "./entity";
+import { Matrix } from "./math.js";
+import Entity from "./entity.js";
 import TileResolver from "./TileResolver.js";
 export default class TileCollider {
     tiles: TileResolver;

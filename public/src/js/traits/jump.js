@@ -1,4 +1,4 @@
-import { Trait } from "../entity.js";
+import { Trait, Sides } from "../entity.js";
 export default class Jump extends Trait {
     constructor() {
         super('jump');
@@ -14,17 +14,33 @@ export default class Jump extends Trait {
         return this.ready < 0;
     }
     start() {
-        this.engageTime = this.duration;
+        this.requestTime = this.gracePeriod;
+    }
+    obstruct(entity, side) {
+        if (side === Sides.BOTTOM) {
+            this.ready = 1;
+        }
+        else if (side === Sides.TOP) {
+            this.cancel();
+        }
     }
     cancel() {
         this.engageTime = 0;
         this.requestTime = 0;
     }
     update(entiy, deltaTime) {
+        if (this.requestTime > 0) {
+            if (this.ready > 0) {
+                this.engageTime = this.duration;
+                this.requestTime = 0;
+            }
+            this.requestTime -= deltaTime;
+        }
         if (this.engageTime > 0) {
-            entiy.vel.y = -this.velocity;
+            entiy.vel.y = -(this.velocity + Math.abs(entiy.vel.x) * this.speedBoost);
             this.engageTime -= deltaTime;
         }
+        this.ready--;
     }
 }
 //# sourceMappingURL=jump.js.map
