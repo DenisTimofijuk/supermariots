@@ -8,8 +8,8 @@ export default class Level {
     comp: Compositor;
     entities: Set<Entity>;
     totalTime: number;
-    tiles: Matrix;
     tileColider: TileColider;
     constructor();
+    setCollisionGrid(matrix: Matrix): void;
     update(deltaTime: number): void;
 }

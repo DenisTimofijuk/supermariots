@@ -1,6 +1,8 @@
 export type Mario = 'idle' | 'run-1' | 'run-2' | 'run-3' | 'break' | 'jump';
 export type TileName = 'ground' | 'sky' | 'chocolate' | 'bricks' | 'chance' | 'chance-1' | 'chance-2' | 'chance-3';
-export type SpriteSheetNames = TileName | Mario;
+export type Pipe = 'pipe-insert-vert-left' | 'pipe-insert-vert-right' | 'pipe-vert-left' | 'pipe-vert-right';
+export type Cloud = 'cloud-1-1' | 'cloud-1-2' | 'cloud-1-3' | 'cloud-2-1' | 'cloud-2-2' | 'cloud-2-3'
+export type SpriteSheetNames = TileName | Mario | Pipe | Cloud;
 type Animation = (distance:number)=>SpriteSheetNames;
 
 export default class SpriteSheet {

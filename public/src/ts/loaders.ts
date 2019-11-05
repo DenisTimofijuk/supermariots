@@ -1,4 +1,4 @@
-import SpriteSheet, { SpriteSheetNames, TileName, Mario } from "./SpriteSheet.js";
+import SpriteSheet, { SpriteSheetNames, TileName, Mario, Pipe } from "./SpriteSheet.js";
 import Level from "./level.js";
 import { createBackgroundLayer, createSpriteLayer } from "./layers.js";
 import { createAnim } from "./anim.js";
@@ -13,51 +13,33 @@ export function loadImage(url: string): Promise<HTMLImageElement> {
     });
 }
 
-type json_File_Names = '1-1' | 'overworld' | 'Mario';
+export type json_File_Names = '1-1' | 'overworld' | 'Mario';
 type TileType = 'ground'
-export interface Background_Element {
-    tile: SpriteSheetNames
-    type: TileType
-    ranges: Array<[number, number, number, number] | [number, number, number] | [number, number]>
+type Pattern = 'pipe-2h' | 'pipe-3h' | 'pipe-4h' | 'pipe-2h' | Pipe | 'cloud-single';
+type Tiles = {
+    tiles: Array<Tile_Element>
 }
+export type  Pattern_Element = {
+    [K in Pattern]:Tiles;
+}
+export type Rng = [number, number, number, number] | [number, number, number] | [number, number];
 
-function createTiles(level: Level, backgrounds: Array<Background_Element>) {
-    function applyRange(background: Background_Element, xStart: number, xLen: number, yStart: number, yLen: number) {
-        const xEnd = xStart + xLen;
-        const yEnd = yStart + yLen;
-        for (let x = xStart; x < xEnd; ++x) {
-            for (let y = yStart; y < yEnd; ++y) {
-                level.tiles.set(x, y, {
-                    name: background.tile,
-                    type: background.type
-                })
-            };
-        };
-    }
-
-    backgrounds.forEach(background => {
-        background.ranges.forEach(range => {
-            if (range.length === 4) {
-                const [xStart, xLen, yStart, yLen] = range;
-                applyRange(background, xStart, xLen, yStart, yLen);
-            }else if(range.length === 2){
-                const [xStart, yStart] = range;
-                applyRange(background, xStart, 1, yStart, 1);
-            }else if(range.length === 3){
-                const [xStart, xLen, yStart] = range;
-                applyRange(background, xStart, xLen, yStart, 1);
-            }
-        });
-    });
-};
-
-
+export interface Tile_Element {
+    name?: SpriteSheetNames
+    pattern?:Pattern
+    type?: TileType
+    ranges: Array<Rng>
+}
+type Layer = {
+    tiles: Array<Tile_Element>
+}
 export interface level_1_1 {
     spriteSheet: json_File_Names;
-    background: Array<Background_Element>
+    layers: Array<Layer>
+    patterns: Pattern_Element
 }
 
-type Tile = {
+type Tile_Overworld = {
     name: TileName,
     type: TileType,
     index:[number, number]
@@ -71,7 +53,7 @@ interface Overworld{
     imageURL:string,
     tileW:number,
     tileH:number,
-    tiles:Array<Tile>,
+    tiles:Array<Tile_Overworld>,
     animations:Array<AnimationElement>
 }
 
@@ -80,15 +62,15 @@ interface MarioJSON{
     frames:Array<{name:Mario, rect:[number, number, number, number]}>
 }
 
-function loadJSON(url:string){
+export function loadJSON(url:string){
     return fetch(url).then(r => r.json() as Promise<level_1_1 | Overworld | MarioJSON>);
 }
 
-function loadLevelJSON(url:string){
+export function loadLevelJSON(url:string){
     return loadJSON(url) as Promise<level_1_1>;
 }
 
-function loadSpriteJSON(url:string){
+export function loadSpriteJSON(url:string){
     return loadJSON(url) as Promise<Overworld | MarioJSON>;
 }
 
@@ -126,23 +108,4 @@ export function loadSpriteSheet(name:json_File_Names){
         
         return sprites;
     })
-}
-
-export function loadLevel(name: json_File_Names) {
-    return loadLevelJSON(`../json/levels/${name}.json`).then(levelSpec => Promise.all([
-        levelSpec,
-        loadSpriteSheet(levelSpec.spriteSheet)
-    ]))
-    .then(([levelSpec, backgroundSprites]) => {
-        const level = new Level();
-
-        createTiles(level, levelSpec.background)        
-
-        const backgroundLayer = createBackgroundLayer(level, backgroundSprites);
-        level.comp.layers.push(backgroundLayer);
-        const spriteLayer = createSpriteLayer(level.entities);
-        level.comp.layers.push(spriteLayer);
-
-        return level;
-    });
 }

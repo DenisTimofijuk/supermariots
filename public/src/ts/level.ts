@@ -11,16 +11,19 @@ export default class Level {
     public comp: Compositor;
     public entities: Set<Entity>;
     public totalTime: number
-    public tiles: Matrix;
-    public tileColider: TileColider;
+    // public tiles: Matrix;
+    public tileColider!: TileColider;
 
     constructor() {
         this.gravity = 1500;
         this.totalTime = 0;
         this.comp = new Compositor()
         this.entities = new Set();
-        this.tiles = new Matrix();
-        this.tileColider = new TileColider(this.tiles);
+        // this.tileColider = null;
+    }
+
+    setCollisionGrid(matrix:Matrix){
+        this.tileColider = new TileColider(matrix);
     }
 
     update(deltaTime: number): void {

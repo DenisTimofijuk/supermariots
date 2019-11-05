@@ -2,23 +2,20 @@ import SpriteSheet from "./SpriteSheet";
 import Entity from "./entity.js";
 import Level from "./level.js";
 import Camera from "./camera.js";
+import { Matrix } from "./math.js";
+import TileResolver from "./TileResolver.js";
 
-export function createBackgroundLayer(level: Level, sprites: SpriteSheet) {
-    const tiles = level.tiles;
-    const resolver = level.tileColider.tiles;
+export function createBackgroundLayer(level: Level, tiles:Matrix, sprites: SpriteSheet) {
+    const resolver = new TileResolver(tiles);
 
     const buffer = document.createElement('canvas');
     buffer.width = 256 + 16;
     buffer.height = 240;
     const ctxBuffer = buffer.getContext('2d') as CanvasRenderingContext2D;
 
-    let startIndex:number;
-    let endIndex:number;
-
-    function redraw(drawFrom:number, drawTo:number) {
-        startIndex = drawFrom;
-        endIndex = drawTo;
-
+    function redraw(startIndex:number, endIndex:number) {
+        ctxBuffer.clearRect(0, 0, buffer.width, buffer.height);
+        
         for( let x = startIndex; x <= endIndex; ++x){
             const con = tiles.grid[x];
             if(con){

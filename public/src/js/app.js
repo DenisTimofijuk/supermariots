@@ -1,9 +1,9 @@
-import { loadLevel } from "./loaders.js";
 import { createCollisionLayer } from "./layers.js";
 import { createMario } from "./entities.js";
 import Timer from "./timer.js";
 import { setUpKeyboard } from "./input.js";
 import Camera from "./camera.js";
+import { loadLevel } from "./loaders/level_loaders.js";
 const canvas = document.getElementById('gameScreen');
 const ctx = canvas.getContext('2d');
 Promise.all([
