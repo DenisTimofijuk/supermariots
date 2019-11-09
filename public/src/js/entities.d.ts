@@ -1,3 +1,6 @@
-import Entity from "./entity.js";
-export declare const FAST_DRAG: number;
-export declare function createMario(): Promise<Entity>;
+declare type EntityFactoriesName = 'mario' | 'goomba' | 'koopa';
+declare type EntityFactories = {
+    [key in EntityFactoriesName]: Function;
+};
+export declare function loadEntities(): Promise<EntityFactories>;
+export {};

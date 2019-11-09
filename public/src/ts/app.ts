@@ -1,24 +1,31 @@
 
-import { createCollisionLayer } from "./layers.js";
-import { createMario } from "./entities.js";
+import { createCollisionLayer, createCameraLayer } from "./layers.js";
 import Timer from "./timer.js";
 import { setUpKeyboard } from "./input.js";
 import Camera from "./camera.js";
 import { loadLevel } from "./loaders/level_loaders.js";
+import { loadEntities } from "./entities.js";
 
 const canvas = document.getElementById('gameScreen') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
 
 Promise.all([
-    createMario(),
+    loadEntities(),
     loadLevel('1-1')
-]).then(([mario, level]) => {
+]).then(([entity, level]) => {
     const camera = new Camera();
+    const mario = entity.mario();
 
     mario.pos.set(64, 64);
 
-    createCollisionLayer(level);
+    const goomba = entity.goomba();
+    goomba.pos.x = 220;
+    level.entities.add(goomba);
+
+    const koopa = entity.koopa();
+    koopa.pos.x = 260;
+    level.entities.add(koopa);
 
     level.entities.add(mario);
 
@@ -26,11 +33,10 @@ Promise.all([
     input.listenTo(window);
     
     //debugger:
-    //level.comp.layers.push(
-    //    createCollisionLayer(level),
-    //    createCameraLayer(camera)
-    //    );
-    //debugger:
+    level.comp.layers.push(
+        createCollisionLayer(level),
+        createCameraLayer(camera)
+        );
     // setUpMouseControl(canvas, mario, camera);
 
     const timer = new Timer()

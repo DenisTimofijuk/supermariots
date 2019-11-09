@@ -1,5 +1,5 @@
 import { Trait } from "../entity.js";
-import { FAST_DRAG } from "../entities.js";
+import { FAST_DRAG } from "../entities/Mario.js";
 export default class Go extends Trait {
     constructor() {
         super('go');

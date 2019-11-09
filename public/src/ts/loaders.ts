@@ -1,6 +1,4 @@
 import SpriteSheet, { SpriteSheetNames, TileName, Mario, Pipe } from "./SpriteSheet.js";
-import Level from "./level.js";
-import { createBackgroundLayer, createSpriteLayer } from "./layers.js";
 import { createAnim } from "./anim.js";
 
 export function loadImage(url: string): Promise<HTMLImageElement> {
@@ -13,7 +11,7 @@ export function loadImage(url: string): Promise<HTMLImageElement> {
     });
 }
 
-export type json_File_Names = '1-1' | 'overworld' | 'Mario';
+export type json_File_Names = '1-1' | 'overworld' | 'Mario' | 'goomba' | 'koopa';
 type TileType = 'ground'
 type Pattern = 'pipe-2h' | 'pipe-3h' | 'pipe-4h' | 'pipe-2h' | Pipe | 'cloud-single';
 type Tiles = {
@@ -45,7 +43,7 @@ type Tile_Overworld = {
     index:[number, number]
 }
 type AnimationElement = {
-    name:TileName
+    name:TileName | Mario
     frameLen:number
     frames:Array<TileName>
 }
@@ -60,6 +58,7 @@ interface Overworld{
 interface MarioJSON{
     imageURL:string;
     frames:Array<{name:Mario, rect:[number, number, number, number]}>
+    animations:Array<AnimationElement>
 }
 
 export function loadJSON(url:string){

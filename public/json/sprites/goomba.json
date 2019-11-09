@@ -1,17 +1,32 @@
 {
-    "imageURL": "./img/characters.gif",
+    "imageURL": "../img/characters.gif",
     "frames": [
         {
             "name": "walk-1",
-            "rec": [296, 187, 16, 16]
+            "rect": [
+                296,
+                187,
+                16,
+                16
+            ]
         },
         {
             "name": "walk-2",
-            "rec": [315, 187, 16, 16]
+            "rect": [
+                315,
+                187,
+                16,
+                16
+            ]
         },
         {
             "name": "flat",
-            "rec": [277, 43, 16, 16]
+            "rect": [
+                277,
+                43,
+                16,
+                16
+            ]
         }
     ],
     "animations": [

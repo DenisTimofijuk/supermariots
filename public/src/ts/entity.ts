@@ -1,12 +1,15 @@
 import { Vec2 } from "./math.js";
 import Go from "./traits/Go.js";
 import Jump from "./traits/jump.js";
+import BoundingBox from "./boundingBox.js";
 
 type Trait_NAME = 'jump' | 'move' | 'velocity' | 'go' | 'walk' | 'pendulumWalk';
 
 export const Sides ={
     TOP: Symbol('top'),
-    BOTTOM: Symbol('bottom')
+    BOTTOM: Symbol('bottom'),
+    LEFT: Symbol('left'),
+    RIGHT: Symbol('right')
 };
 
 export class Trait {
@@ -38,13 +41,17 @@ export default class Entity {
     public pos: Vec2;
     public vel: Vec2;
     public size: Vec2;
+    public offset: Vec2;
     public traits: Array<any>
     public lifeTime: number
+    public bounds:BoundingBox
 
     constructor() {
         this.pos = new Vec2(0, 0);
         this.vel = new Vec2(0, 0);
         this.size = new Vec2(0, 0);
+        this.offset = new Vec2(0, 0);
+        this.bounds = new BoundingBox(this.pos, this.size, this.offset)
         this.traits = [];
         this.lifeTime = 0;
     }
