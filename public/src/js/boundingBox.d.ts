@@ -4,6 +4,7 @@ export default class BoundingBox {
     size: Vec2;
     offset: Vec2;
     constructor(pos: Vec2, size: Vec2, offset: Vec2);
+    overlaps(box: BoundingBox): boolean;
     bottom: number;
     top: number;
     left: number;

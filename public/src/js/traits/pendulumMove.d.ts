@@ -1,5 +1,5 @@
 import Entity, { Trait } from "../entity.js";
-export default class PendulumWalk extends Trait {
+export default class PendulumMove extends Trait {
     speed: number;
     enabled: boolean;
     constructor();

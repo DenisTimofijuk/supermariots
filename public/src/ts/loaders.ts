@@ -1,6 +1,6 @@
 import SpriteSheet from "./SpriteSheet.js";
 import { createAnim } from "./anim.js";
-import { level_1_1, Overworld, MarioJSON, json_File_Names } from "./IAT.js";
+import { level_1_1, Overworld, MarioJSON, json_File_Names, KoopaJSON } from "./IAT.js";
 
 export function loadImage(url: string): Promise<HTMLImageElement> {
     return new Promise(resolve => {
@@ -21,7 +21,7 @@ export function loadLevelJSON(url:string){
 }
 
 export function loadSpriteJSON(url:string){
-    return loadJSON(url) as Promise<Overworld | MarioJSON>;
+    return loadJSON(url) as Promise<Overworld | MarioJSON | KoopaJSON>;
 }
 
 export function loadSpriteSheet(name:json_File_Names){
@@ -32,7 +32,7 @@ export function loadSpriteSheet(name:json_File_Names){
     ]))
     .then(([sheetSpec, image]) => {
         var sheetSpecOverworld = sheetSpec as Overworld
-        var sheetSpecMarioJSON = sheetSpec as MarioJSON
+        var sheetSpecMarioJSON = sheetSpec as MarioJSON & KoopaJSON
 
         const sprites = new SpriteSheet(image, sheetSpecOverworld.tileW, sheetSpecOverworld.tileH);
 

@@ -2,8 +2,12 @@ import { Vec2 } from "./math.js";
 import Go from "./traits/Go.js";
 import Jump from "./traits/jump.js";
 import BoundingBox from "./boundingBox.js";
-
-type Trait_NAME = 'jump' | 'move' | 'velocity' | 'go' | 'walk' | 'pendulumWalk';
+import { Trait_NAME } from "./IAT.js";
+import PendulumMove from "./traits/pendulumMove.js";
+import Stomper from "./traits/Stumper.js";
+import Killable from "./traits/Killable.js";
+import Level from "./level.js";
+import PlayerKontroller from "./traits/PlayerController.js";
 
 export const Sides ={
     TOP: Symbol('top'),
@@ -21,14 +25,17 @@ export class Trait {
         this.speed = 0;
     }
 
+    collides(us: Entity, them: Entity) {
+
+    }
+
     obstruct(entity: Entity, side: Symbol): void {
     }
 
-    update(entiy: Entity, deltaTime: number): void {
-        console.warn('unhandled update call in Trait');
+    update(entiy: Entity, deltaTime: number, level:Level): void {
+
     }
 }
-
 
 export default class Entity {
     turbo!:Function;
@@ -37,16 +44,22 @@ export default class Entity {
     velocity: any;
     go!: Go;
     walk: any;
-    pendulumWalk: any;
+    pendulumMove!: PendulumMove;
+    behaviour: any;
+    stomper!: Stomper;
+    killable!: Killable;
+    playerKontroller!: PlayerKontroller;
     public pos: Vec2;
     public vel: Vec2;
     public size: Vec2;
     public offset: Vec2;
-    public traits: Array<any>
+    public traits: Array<Trait>
     public lifeTime: number
     public bounds:BoundingBox
+    public canCollide:boolean;
 
     constructor() {
+        this.canCollide = true;
         this.pos = new Vec2(0, 0);
         this.vel = new Vec2(0, 0);
         this.size = new Vec2(0, 0);
@@ -60,6 +73,12 @@ export default class Entity {
 
     }
 
+    collides(candidate:Entity){
+        this.traits.forEach(trait => {
+            trait.collides(this, candidate);
+        })
+    }
+
     obstruct(side:Symbol){
         this.traits.forEach(trait => {
             trait.obstruct(this, side);
@@ -71,9 +90,9 @@ export default class Entity {
         this[trait.NAME] = trait;
     }
 
-    update(deltaTime: number): void {
+    update(deltaTime: number, level:Level): void {
         this.traits.forEach(trait => {
-            trait.update(this, deltaTime);
+            trait.update(this, deltaTime, level);
         })
         this.lifeTime += deltaTime;
     }

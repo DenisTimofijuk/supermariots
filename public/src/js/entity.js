@@ -11,14 +11,16 @@ export class Trait {
         this.NAME = name;
         this.speed = 0;
     }
+    collides(us, them) {
+    }
     obstruct(entity, side) {
     }
-    update(entiy, deltaTime) {
-        console.warn('unhandled update call in Trait');
+    update(entiy, deltaTime, level) {
     }
 }
 export default class Entity {
     constructor() {
+        this.canCollide = true;
         this.pos = new Vec2(0, 0);
         this.vel = new Vec2(0, 0);
         this.size = new Vec2(0, 0);
@@ -29,6 +31,11 @@ export default class Entity {
     }
     draw(context) {
     }
+    collides(candidate) {
+        this.traits.forEach(trait => {
+            trait.collides(this, candidate);
+        });
+    }
     obstruct(side) {
         this.traits.forEach(trait => {
             trait.obstruct(this, side);
@@ -38,9 +45,9 @@ export default class Entity {
         this.traits.push(trait);
         this[trait.NAME] = trait;
     }
-    update(deltaTime) {
+    update(deltaTime, level) {
         this.traits.forEach(trait => {
-            trait.update(this, deltaTime);
+            trait.update(this, deltaTime, level);
         });
         this.lifeTime += deltaTime;
     }

@@ -18,6 +18,14 @@
                 16,
                 24
             ]
+        },
+        {
+            "name": "hiding",
+            "rect": [144,206,16,24]
+        },
+        {
+            "name": "hidding-with-legs",
+            "rect": [163,206,16,24]
         }
     ],
     "animations": [
@@ -27,6 +35,14 @@
             "frames": [
                 "walk-1",
                 "walk-2"
+            ]
+        },
+        {
+            "name": "wake",
+            "frameLen": 0.15,
+            "frames": [
+                "hiding",
+                "hidding-with-legs"
             ]
         }
     ]
