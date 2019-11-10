@@ -2,9 +2,6 @@ import { Matrix } from "./math.js";
 import Entity, { Sides } from "./entity.js";
 import TileResolver from "./TileResolver.js";
 
-
-
-
 export default class TileCollider {
     public tiles: TileResolver;
 

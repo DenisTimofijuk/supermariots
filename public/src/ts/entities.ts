@@ -1,27 +1,16 @@
 import { loadMario } from "./entities/Mario.js";
 import { loadGoomba } from "./entities/Goomba.js";
 import { loadKoopa } from "./entities/Koopa.js";
+import Entity from "./entity.js";
+import { EntityFactories, EntityFactoriesName, EntityFunction } from "./IAT.js";
 
-type EntityFactoriesName = 'mario' | 'goomba' | 'koopa';
-
-type EntityFactories = {
-    [key in EntityFactoriesName]: Function;
-}
-
-// type EntityFactories = {
-//     [key in EntityFactoriesName]: Function;
-// } & {
-//     mario: Function;
-//     goomba: Function;
-//     koopa: Function;
-// };
 
 
 export function loadEntities() {
     const entiityFactories = {} as EntityFactories;
 
     function addAs(name:EntityFactoriesName) {
-        return (factory: Function) => entiityFactories[name] = factory;
+        return (factory: EntityFunction) => entiityFactories[name] = factory;
     }
 
     return Promise.all([

@@ -3,29 +3,21 @@ import { createCollisionLayer, createCameraLayer } from "./layers.js";
 import Timer from "./timer.js";
 import { setUpKeyboard } from "./input.js";
 import Camera from "./camera.js";
-import { loadLevel } from "./loaders/level_loaders.js";
+import { createLevelLoader } from "./loaders/level_loaders.js";
 import { loadEntities } from "./entities.js";
 
-const canvas = document.getElementById('gameScreen') as HTMLCanvasElement;
-const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
 
-Promise.all([
-    loadEntities(),
-    loadLevel('1-1')
-]).then(([entity, level]) => {
+async function main(canvas:HTMLCanvasElement) {
+    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+    const entityFactory = await loadEntities();
+    const LoadLevel = await createLevelLoader(entityFactory);
+    const level = await LoadLevel('1-1');
+
     const camera = new Camera();
-    const mario = entity.mario();
+    const mario = entityFactory.mario();
 
     mario.pos.set(64, 64);
-
-    const goomba = entity.goomba();
-    goomba.pos.x = 220;
-    level.entities.add(goomba);
-
-    const koopa = entity.koopa();
-    koopa.pos.x = 260;
-    level.entities.add(koopa);
 
     level.entities.add(mario);
 
@@ -33,10 +25,10 @@ Promise.all([
     input.listenTo(window);
     
     //debugger:
-    level.comp.layers.push(
-        createCollisionLayer(level),
-        createCameraLayer(camera)
-        );
+    // level.comp.layers.push(
+    //     createCollisionLayer(level),
+    //     createCameraLayer(camera)
+    //     );
     // setUpMouseControl(canvas, mario, camera);
 
     const timer = new Timer()
@@ -52,4 +44,7 @@ Promise.all([
 
     timer.start();
 
-})
+}
+
+const canvas = document.getElementById('gameScreen') as HTMLCanvasElement;
+main(canvas);

@@ -1,12 +1,6 @@
-import { Matrix, MatrixValue } from "./math.js";
+import { Matrix } from "./math.js";
+import { GetByIndex } from "./IAT.js";
 
-interface GetByIndex {
-    tile: MatrixValue;
-    y1: number;
-    y2: number;
-    x1: number;
-    x2: number;
-}
 
 export default class TileResolver {
     public matrix: Matrix;

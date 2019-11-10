@@ -1,4 +1,5 @@
-import { SpriteSheetNames } from "./SpriteSheet";
+import { SpriteSheetNames } from "./IAT";
+
 
 export function createAnim(frames:Array<SpriteSheetNames>, frameLen:number) {
     return function resolveFrame(distance:number):SpriteSheetNames {

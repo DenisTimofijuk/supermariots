@@ -2,7 +2,8 @@ import Entity from "../entity.js";
 import Jump from "../traits/jump.js";
 import Go from "../traits/Go.js";
 import { loadSpriteSheet } from "../loaders.js";
-import SpriteSheet, { SpriteSheetNames, Anim } from "../SpriteSheet.js";
+import SpriteSheet from "../SpriteSheet.js";
+import { Anim, SpriteSheetNames } from "../IAT.js";
 
 const SLOW_DRAG = 1 / 1800;
 export const FAST_DRAG = 1 / 6500;

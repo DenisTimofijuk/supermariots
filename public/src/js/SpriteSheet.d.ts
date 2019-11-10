@@ -1,10 +1,4 @@
-export declare type Mario = 'idle' | 'run-1' | 'run-2' | 'run-3' | 'break' | 'jump' | 'run';
-export declare type Goomba = 'walk-1' | 'walk-2' | 'flat' | 'walk';
-export declare type TileName = 'ground' | 'sky' | 'chocolate' | 'bricks' | 'chance' | 'chance-1' | 'chance-2' | 'chance-3';
-export declare type Pipe = 'pipe-insert-vert-left' | 'pipe-insert-vert-right' | 'pipe-vert-left' | 'pipe-vert-right';
-export declare type Cloud = 'cloud-1-1' | 'cloud-1-2' | 'cloud-1-3' | 'cloud-2-1' | 'cloud-2-2' | 'cloud-2-3';
-export declare type SpriteSheetNames = TileName | Mario | Pipe | Cloud | Goomba;
-export declare type Anim = (distance: number) => SpriteSheetNames;
+import { SpriteSheetNames, Anim } from "./IAT";
 export default class SpriteSheet {
     image: HTMLImageElement;
     width: number;

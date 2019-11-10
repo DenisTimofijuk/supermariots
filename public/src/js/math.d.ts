@@ -1,8 +1,4 @@
-import { SpriteSheetNames } from "./SpriteSheet";
-export interface MatrixValue {
-    name?: SpriteSheetNames;
-    type?: SpriteSheetNames;
-}
+import { MatrixValue } from "./IAT";
 export declare class Matrix {
     grid: Array<Array<MatrixValue>>;
     constructor();

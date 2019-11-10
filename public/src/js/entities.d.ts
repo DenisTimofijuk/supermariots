@@ -1,6 +1,2 @@
-declare type EntityFactoriesName = 'mario' | 'goomba' | 'koopa';
-declare type EntityFactories = {
-    [key in EntityFactoriesName]: Function;
-};
+import { EntityFactories } from "./IAT.js";
 export declare function loadEntities(): Promise<EntityFactories>;
-export {};

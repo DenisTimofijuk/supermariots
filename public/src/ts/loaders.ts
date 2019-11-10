@@ -1,5 +1,6 @@
-import SpriteSheet, { SpriteSheetNames, TileName, Mario, Pipe } from "./SpriteSheet.js";
+import SpriteSheet from "./SpriteSheet.js";
 import { createAnim } from "./anim.js";
+import { level_1_1, Overworld, MarioJSON, json_File_Names } from "./IAT.js";
 
 export function loadImage(url: string): Promise<HTMLImageElement> {
     return new Promise(resolve => {
@@ -9,56 +10,6 @@ export function loadImage(url: string): Promise<HTMLImageElement> {
         });
         image.src = url;
     });
-}
-
-export type json_File_Names = '1-1' | 'overworld' | 'Mario' | 'goomba' | 'koopa';
-type TileType = 'ground'
-type Pattern = 'pipe-2h' | 'pipe-3h' | 'pipe-4h' | 'pipe-2h' | Pipe | 'cloud-single';
-type Tiles = {
-    tiles: Array<Tile_Element>
-}
-export type  Pattern_Element = {
-    [K in Pattern]:Tiles;
-}
-export type Rng = [number, number, number, number] | [number, number, number] | [number, number];
-
-export interface Tile_Element {
-    name?: SpriteSheetNames
-    pattern?:Pattern
-    type?: TileType
-    ranges: Array<Rng>
-}
-type Layer = {
-    tiles: Array<Tile_Element>
-}
-export interface level_1_1 {
-    spriteSheet: json_File_Names;
-    layers: Array<Layer>
-    patterns: Pattern_Element
-}
-
-type Tile_Overworld = {
-    name: TileName,
-    type: TileType,
-    index:[number, number]
-}
-type AnimationElement = {
-    name:TileName | Mario
-    frameLen:number
-    frames:Array<TileName>
-}
-interface Overworld{
-    imageURL:string,
-    tileW:number,
-    tileH:number,
-    tiles:Array<Tile_Overworld>,
-    animations:Array<AnimationElement>
-}
-
-interface MarioJSON{
-    imageURL:string;
-    frames:Array<{name:Mario, rect:[number, number, number, number]}>
-    animations:Array<AnimationElement>
 }
 
 export function loadJSON(url:string){

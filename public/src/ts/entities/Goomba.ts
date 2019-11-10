@@ -1,7 +1,8 @@
 import Entity, { Sides } from "../entity.js";
 import { loadSpriteSheet } from "../loaders.js";
-import SpriteSheet, { Anim } from "../SpriteSheet.js";
+import SpriteSheet from "../SpriteSheet.js";
 import PendulumWalk from "../traits/pendulumWalk.js";
+import { Anim } from "../IAT.js";
 
 export function loadGoomba() {
     return loadSpriteSheet('goomba').then(createGoombaFactory)
