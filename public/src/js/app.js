@@ -1,4 +1,3 @@
-import { createCollisionLayer, createCameraLayer } from "./layers.js";
 import Timer from "./timer.js";
 import { setUpKeyboard } from "./input.js";
 import Camera from "./camera.js";
@@ -25,7 +24,6 @@ async function main(canvas) {
     level.entities.add(playerEnv);
     const input = setUpKeyboard(mario);
     input.listenTo(window);
-    level.comp.layers.push(createCollisionLayer(level), createCameraLayer(camera));
     const timer = new Timer();
     timer.update = function update(deltaTime) {
         level.update(deltaTime);

@@ -34,10 +34,10 @@ async function main(canvas:HTMLCanvasElement) {
     input.listenTo(window);
     
     //debugger:
-    level.comp.layers.push(
-        createCollisionLayer(level),
-        createCameraLayer(camera)
-        );
+    // level.comp.layers.push(
+    //     createCollisionLayer(level),
+    //     createCameraLayer(camera)
+    //     );
     //setUpMouseControl(canvas, mario, camera);
 
     const timer = new Timer()

@@ -10,10 +10,18 @@ export class Trait {
     constructor(name) {
         this.NAME = name;
         this.speed = 0;
+        this.tasks = [];
+    }
+    finalize() {
+        this.tasks.forEach(task => task());
+        this.tasks.length = 0;
+    }
+    queue(task) {
+        this.tasks.push(task);
     }
     collides(us, them) {
     }
-    obstruct(entity, side) {
+    obstruct(entity, side, match) {
     }
     update(entiy, deltaTime, level) {
     }
@@ -31,14 +39,19 @@ export default class Entity {
     }
     draw(context) {
     }
+    finalize() {
+        this.traits.forEach(trait => {
+            trait.finalize();
+        });
+    }
     collides(candidate) {
         this.traits.forEach(trait => {
             trait.collides(this, candidate);
         });
     }
-    obstruct(side) {
+    obstruct(side, match) {
         this.traits.forEach(trait => {
-            trait.obstruct(this, side);
+            trait.obstruct(this, side, match);
         });
     }
     addTrait(trait) {

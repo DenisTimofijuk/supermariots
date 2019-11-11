@@ -10,7 +10,7 @@ export type EntityFactoriesName = 'mario' | 'goomba' | 'koopa';
 export type json_File_Names = '1-1' | 'overworld' | 'Mario' | 'goomba' | 'koopa';
 export type TileType = 'ground'
 export type Pattern = 'pipe-2h' | 'pipe-3h' | 'pipe-4h' | 'pipe-2h' | Pipe | 'cloud-single';
-export type Trait_NAME = 'jump' | 'move' | 'velocity' | 'go' | 'walk' | 'pendulumMove' | 'behaviour' | 'stomper' | 'killable' | 'playerKontroller';
+export type Trait_NAME = 'jump' | 'move' | 'velocity' | 'go' | 'walk' | 'pendulumMove' | 'behaviour' | 'stomper' | 'killable' | 'playerKontroller' | 'solid' | 'physics';
 export type SpriteSheetNames = TileName | Mario | Pipe | Cloud | Goomba | Koopa;
 export type Anim = (distance:number)=>SpriteSheetNames;
 export type EntityFunction = () => Entity;

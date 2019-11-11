@@ -4,6 +4,8 @@ import SpriteSheet from "../SpriteSheet.js";
 import PendulumWalk from "../traits/pendulumMove.js";
 import { Anim } from "../IAT.js";
 import Killable from "../traits/Killable.js";
+import Solid from "../traits/Solid.js";
+import Physics from "../traits/Phisics.js";
 
 export function loadGoomba() {
     return loadSpriteSheet('goomba').then(createGoombaFactory)
@@ -50,6 +52,8 @@ function createGoombaFactory(sprite: SpriteSheet) {
         goomba.size.set(16, 16);
         goomba.vel.x = -30;
 
+        goomba.addTrait(new Physics());
+        goomba.addTrait(new Solid());
         goomba.addTrait(new PendulumWalk())
         goomba.addTrait(new Behaviour())
         goomba.addTrait(new Killable())
