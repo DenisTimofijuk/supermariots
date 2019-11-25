@@ -87,6 +87,7 @@ class Behaviour extends Trait {
                 this.unhide(us);
             }
         }
+        us.killable.onScreenHandler(us.pos.y);
     }
 }
 function createKoopaFactory(sprite) {

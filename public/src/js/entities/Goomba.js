@@ -25,6 +25,9 @@ class Behaviour extends Trait {
             }
         }
     }
+    update(entity) {
+        entity.killable.onScreenHandler(entity.pos.y);
+    }
 }
 function createGoombaFactory(sprite) {
     const walkAnim = sprite.animations.get('walk');

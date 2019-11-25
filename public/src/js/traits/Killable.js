@@ -13,6 +13,16 @@ export default class Killable extends Trait {
         this.dead = false;
         this.deadTime = 0;
     }
+    onScreenHandler(y) {
+        if (y > 240) {
+            console.log("onScreenHandler => kill under");
+            this.kill();
+        }
+        if (y < 0) {
+            console.log("onScreenHandler => kill over");
+            this.kill();
+        }
+    }
     update(entity, deltaTime, level) {
         if (this.dead) {
             this.deadTime += deltaTime;

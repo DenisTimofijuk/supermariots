@@ -21,5 +21,7 @@ export default class PlayerController extends Trait {
             this.player.pos.set(this.checkPoint.x, this.checkPoint.y);
             level.entities.add(this.player)
         }
+
+        this.player.killable.onScreenHandler(this.player.pos.y);
     }
 }

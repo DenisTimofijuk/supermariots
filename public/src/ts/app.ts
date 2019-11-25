@@ -55,10 +55,3 @@ async function main(canvas:HTMLCanvasElement) {
 
 const canvas = document.getElementById('gameScreen') as HTMLCanvasElement;
 main(canvas);
-
-
-/*
-You have very blured graphics when you move. I found out the solution how to fix it. It tries to draw layers on the coordinations with big floating points
-i added this code to update function in camera, it helps
-camera.pos.x = Math.round(camera.pos.x * 1000) / 1000;
-*/

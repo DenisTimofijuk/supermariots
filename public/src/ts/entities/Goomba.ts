@@ -25,10 +25,14 @@ class Behaviour extends Trait {
             if (them.vel.y > us.vel.y) {
                 us.killable.kill();
                 us.pendulumMove.speed = 0;
-            }else{
+            } else {
                 them.killable.kill();
             }
         }
+    }
+
+    update(entity: Entity) {
+        entity.killable.onScreenHandler(entity.pos.y);
     }
 }
 
