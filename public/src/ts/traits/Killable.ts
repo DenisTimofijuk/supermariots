@@ -1,6 +1,9 @@
 import Entity, { Trait } from "../entity.js";
 import Level from "../level.js";
 
+const MIN_ENTITY_POS = -50;
+const MAX_ENTITY_POS = 240;
+
 export default class Killable extends Trait {
     public dead: boolean;
     public deadTime: number
@@ -25,11 +28,11 @@ export default class Killable extends Trait {
     }
 
     onScreenHandler(y: number) {
-        if (y > 240) {
+        if (y > MAX_ENTITY_POS) {
             console.log("onScreenHandler => kill under");
             this.kill();
         }
-        if (y < 0) {
+        if (y < MIN_ENTITY_POS) {
             console.log("onScreenHandler => kill over");
             this.kill();
         }

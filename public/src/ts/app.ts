@@ -8,6 +8,7 @@ import { loadEntities } from "./entities.js";
 import { setUpMouseControl } from "./debug.js";
 import Entity from "./entity.js";
 import PlayerController from "./traits/PlayerController.js";
+import { audioLoader } from "./loaders/audio_loader.js";
 
 function createPlayerENviroment(playerEntity:Entity) {
     const playerEnv = new Entity();
@@ -23,6 +24,7 @@ async function main(canvas:HTMLCanvasElement) {
     const entityFactory = await loadEntities();
     const LoadLevel = await createLevelLoader(entityFactory);
     const level = await LoadLevel('1-1');
+    // const audio = await audioLoader();
 
     const camera = new Camera();
     const mario = entityFactory.mario();
@@ -44,7 +46,10 @@ async function main(canvas:HTMLCanvasElement) {
     timer.update = function update(deltaTime) {
         level.update(deltaTime);
 
-        camera.pos.x = Math.max(0, mario.pos.x - 100);
+        // max camera position calculations:
+        // (last tile x poxition - tile width + 1) * tile width
+        // (211-16 + 1)*16 = 3136
+        camera.pos.x = Math.min( Math.max(0, mario.pos.x - 100), 3136); 
 
         level.comp.draw(ctx, camera);
     }

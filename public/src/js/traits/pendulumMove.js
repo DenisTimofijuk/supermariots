@@ -1,8 +1,14 @@
 import { Trait, Sides } from "../entity.js";
 export default class PendulumMove extends Trait {
     constructor() {
+        if (Array.prototype && !Array.prototype.getRandom) {
+            Array.prototype.getRandom = function () {
+                return this[Math.floor(Math.random() * this.length)];
+            };
+        }
+        const speeds = [-30, -40, -50];
         super('pendulumMove');
-        this.speed = -30;
+        this.speed = speeds.getRandom();
         this.enabled = true;
     }
     obstruct(entity, side) {

@@ -5,8 +5,15 @@ export default class PendulumMove extends Trait {
     public enabled: boolean
 
     constructor() {
+        if (Array.prototype && !Array.prototype.getRandom) {
+            Array.prototype.getRandom = function (): any {
+                return this[Math.floor(Math.random()*this.length)];
+            };
+        }
+
+        const speeds = [-30, -40, -50]
         super('pendulumMove');
-        this.speed = -30;
+        this.speed = speeds.getRandom();
         this.enabled = true;
     }
 
@@ -17,8 +24,8 @@ export default class PendulumMove extends Trait {
     }
 
     update(entiy: Entity, deltaTime: number): void {
-        if(this.enabled){
+        if (this.enabled) {
             entiy.vel.x = this.speed;
-        }        
+        }
     }
 }

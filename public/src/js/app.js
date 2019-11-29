@@ -27,7 +27,7 @@ async function main(canvas) {
     const timer = new Timer();
     timer.update = function update(deltaTime) {
         level.update(deltaTime);
-        camera.pos.x = Math.max(0, mario.pos.x - 100);
+        camera.pos.x = Math.min(Math.max(0, mario.pos.x - 100), 3136);
         level.comp.draw(ctx, camera);
     };
     timer.start();

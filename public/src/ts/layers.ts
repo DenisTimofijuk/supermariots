@@ -33,7 +33,8 @@ export function createBackgroundLayer(level: Level, tiles:Matrix, sprites: Sprit
     return function drawBackgroundLayer(context: CanvasRenderingContext2D, camera: Camera) {
         const drawWidth = resolver.toIndex(camera.size.x);
         const drawFrom = resolver.toIndex(camera.pos.x);
-        const drawTo = drawFrom + drawWidth;
+        const drawTo = drawFrom + drawWidth;     
+
         redraw(drawFrom, drawTo);
         context.imageSmoothingEnabled = false;
         context.drawImage(buffer, 
