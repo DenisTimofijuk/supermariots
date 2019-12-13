@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/DenisTimofijuk/supermariots#readme",
   "dependencies": {
-    "npm": "^6.13.0",
+    "npm": "^6.13.4",
     "serve": "^11.2.0"
   }
 }
