@@ -1,7 +1,6 @@
 import { loadMario } from "./entities/Mario.js";
 import { loadGoomba } from "./entities/Goomba.js";
 import { loadKoopa } from "./entities/Koopa.js";
-import Entity from "./entity.js";
 import { EntityFactories, EntityFactoriesName, EntityFunction } from "./IAT.js";
 
 

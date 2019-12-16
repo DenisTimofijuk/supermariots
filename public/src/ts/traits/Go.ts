@@ -19,7 +19,12 @@ export default class Go extends Trait {
         this.deceleration = 300;
     }
 
-    update(entity: Entity, deltaTime: number): void {
+    update(entity: Entity, deltaTime: number): void {        
+        if(entity.killable.dead){
+            this.dead(entity);
+            return;
+        }
+
         const absX = Math.abs(entity.vel.x);
         if (this.dir !== 0) {
             entity.vel.x += this.acceleration * deltaTime * this.dir;
@@ -39,5 +44,9 @@ export default class Go extends Trait {
         const drag = this.dragFactor * entity.vel.x * absX;
         entity.vel.x -= drag;
         this.distance += absX * deltaTime;
+    }
+
+    dead(entity: Entity){
+        entity.vel.x = 0;
     }
 }

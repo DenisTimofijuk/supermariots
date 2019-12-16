@@ -7,10 +7,12 @@ export default class Jump extends Trait {
     requestTime: number;
     gracePeriod: number;
     private speedBoost;
+    playJump: boolean;
     constructor();
     readonly falling: boolean;
     start(): void;
     obstruct(entity: Entity, side: Symbol): void;
     cancel(): void;
     update(entiy: Entity, deltaTime: number): void;
+    dead(entity: Entity): void;
 }

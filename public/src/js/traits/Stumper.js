@@ -2,7 +2,9 @@ import { Trait } from "../entity.js";
 export default class Stomper extends Trait {
     constructor() {
         super('stomper');
-        this.bounceSpeed = 400;
+        this.bounceSpeed = 200;
+        this.playStomp = false;
+        this.cycleDellay = 0;
     }
     bounce(us, them) {
         us.bounds.bottom = them.bounds.top;
@@ -14,6 +16,16 @@ export default class Stomper extends Trait {
         }
         if (us.vel.y > them.vel.y) {
             this.bounce(us, them);
+            this.playStomp = true;
+        }
+    }
+    update(entity, deltaTime) {
+        if (this.cycleDellay > 0) {
+            this.cycleDellay = 0;
+            this.playStomp = false;
+        }
+        if (this.playStomp && this.cycleDellay == 0) {
+            this.cycleDellay++;
         }
     }
 }

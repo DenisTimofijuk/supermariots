@@ -8,6 +8,8 @@ import Stomper from "../traits/Stumper.js";
 import Killable from "../traits/Killable.js";
 import Solid from "../traits/Solid.js";
 import Physics from "../traits/Phisics.js";
+import { SoundEffects } from "../loaders/audio_loader.js";
+import MarioAudioEffects from "../traits/MarioAaudio.js";
 
 const SLOW_DRAG = 1 / 1800;
 export const FAST_DRAG = 1 / 6500;
@@ -20,6 +22,10 @@ function createMArioFactory(sprite: SpriteSheet) {
     const runAnim = sprite.animations.get('run') as Anim
 
     function routeFrame(mario: Entity): SpriteSheetNames {
+        if(mario.killable.dead){
+            return 'dead';
+        }
+        
         if (mario.jump.falling) {
             return 'jump';
         }
@@ -29,6 +35,7 @@ function createMArioFactory(sprite: SpriteSheet) {
             }
             return runAnim(mario.go.distance);
         }
+        
         return 'idle';
     }
 
@@ -40,18 +47,19 @@ function createMArioFactory(sprite: SpriteSheet) {
         sprite.draw(routeFrame(this), context, 0, 0, this.go.heading < 0);
     }
 
-    return function createMario() {
-        const mario = new Entity;
+    return function createMario(audios:SoundEffects) {
+        const mario = new Entity('mario');
         mario.size.set(14, 16);
-
+       
         mario.addTrait(new Physics());
         mario.addTrait(new Solid());
         mario.addTrait(new Go());
         mario.addTrait(new Jump());
         mario.addTrait(new Stomper());
         mario.addTrait(new Killable());
+        mario.addTrait(new MarioAudioEffects(audios));
 
-        mario.killable.removeAfter = 0;
+        mario.killable.removeAfter = 1;
 
         mario.turbo = setTurbo;
         mario.draw = drawMario;

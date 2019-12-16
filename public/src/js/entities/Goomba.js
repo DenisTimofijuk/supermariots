@@ -12,7 +12,7 @@ class Behaviour extends Trait {
         super('behaviour');
     }
     collides(us, them) {
-        if (us.killable.dead) {
+        if (us.killable.dead || them.killable.dead) {
             return;
         }
         if (them.stomper) {
@@ -41,7 +41,7 @@ function createGoombaFactory(sprite) {
         sprite.draw(routeAnim(this), context, 0, 0);
     }
     return function createGoomba() {
-        const goomba = new Entity;
+        const goomba = new Entity('goomba');
         goomba.size.set(16, 16);
         goomba.vel.x = -30;
         goomba.addTrait(new Physics());

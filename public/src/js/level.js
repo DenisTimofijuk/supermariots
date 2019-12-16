@@ -1,6 +1,7 @@
 import Compositor from "./compositor.js";
 import TileColider from "./tileColider.js";
 import EntityCollider from "./EntityColider.js";
+import EntityStandBy from "./EntityStandBy.js";
 export default class Level {
     constructor() {
         this.gravity = 1500;
@@ -8,6 +9,7 @@ export default class Level {
         this.comp = new Compositor();
         this.entities = new Set();
         this.EntityCollider = new EntityCollider(this.entities);
+        this.entityStandBy = new EntityStandBy(this.entities);
     }
     backgrounds(backgrounds, backgroundSprites) {
         throw new Error("Method not implemented.");
@@ -21,6 +23,9 @@ export default class Level {
         });
         this.entities.forEach(entity => {
             this.EntityCollider.check(entity);
+        });
+        this.entities.forEach(entity => {
+            this.entityStandBy.check(entity);
         });
         this.entities.forEach(entity => {
             entity.finalize();

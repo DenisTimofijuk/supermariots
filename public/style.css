@@ -6,3 +6,23 @@
 canvas{
     border: 1px solid brown;
 }
+
+body{
+    background: black;
+}
+
+#gameScreen{
+    display: block;
+    image-rendering: pixelated;
+    height: 100vh;
+    margin: auto;
+}
+
+.controls_table{
+    background-color: #fbe5e5;
+    font-size: x-large;
+}
+
+.controls_table td{
+    padding: 5px;
+}

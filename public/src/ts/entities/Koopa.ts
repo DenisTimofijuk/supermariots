@@ -31,7 +31,7 @@ class Behaviour extends Trait {
     }
 
     collides(us: Entity, them: Entity) {
-        if (us.killable.dead) {
+        if (us.killable.dead || them.killable.dead) {
             return;
         }
 
@@ -129,7 +129,7 @@ function createKoopaFactory(sprite: SpriteSheet) {
     }
 
     return function createKoopa() {
-        const koopa = new Entity;
+        const koopa = new Entity('koopa');
         koopa.size.set(16, 16);
         koopa.offset.y = 8;
 
@@ -144,3 +144,6 @@ function createKoopaFactory(sprite: SpriteSheet) {
         return koopa;
     }
 }
+
+//TODO: start move only if Mario pos is in reasonable radius of this Entity, to have better user expierance;
+//TODO: create separate AudioEffects class only for Koopa

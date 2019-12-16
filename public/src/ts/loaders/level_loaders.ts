@@ -1,9 +1,11 @@
 import { loadSpriteSheet, loadLevelJSON } from "../loaders.js";
 import Level from "../level.js";
-import { createBackgroundLayer, createSpriteLayer } from "../layers.js";
+import { createSpriteLayer } from "../layers.js";
 import { Matrix } from "../math.js";
 import SpriteSheet from "../SpriteSheet.js";
 import { level_1_1, Tile_Element, EntityFactories, json_File_Names, Pattern_Element, Rng } from "../IAT.js";
+import { SoundEffects } from "./audio_loader.js";
+import { createBackgroundLayer } from "../layers/background.js";
 
 function setupCollision(levelSpec: level_1_1, level: Level) {
     const mergedTiles = levelSpec.layers.reduce((mergedTiles, layerSpec) => {
@@ -22,12 +24,12 @@ function setupBackground(levelSpec: level_1_1, level: Level, backgroundSprites: 
     })
 }
 
-function setupEntities(levelSpec: level_1_1, level: Level, entotiFactory: EntityFactories) {
+function setupEntities(levelSpec: level_1_1, level: Level, entotiFactory: EntityFactories, audios:SoundEffects) {
     const spriteLayer = createSpriteLayer(level.entities);
 
     levelSpec.entities.forEach(({ name, pos: [x, y] }) => {
         const createEntity = entotiFactory[name];
-        const entity = createEntity();
+        const entity = createEntity(audios);
         entity.pos.set(x, y);
         level.entities.add(entity);
     })
@@ -35,7 +37,7 @@ function setupEntities(levelSpec: level_1_1, level: Level, entotiFactory: Entity
     level.comp.layers.push(spriteLayer);
 }
 
-export function createLevelLoader(entotiFactory: EntityFactories) {
+export function createLevelLoader(entotiFactory: EntityFactories, audios:SoundEffects) {
     return function loadLevel(name: json_File_Names) {
         return loadLevelJSON(`../json/levels/${name}.json`).then(levelSpec => Promise.all([
             levelSpec,
@@ -46,7 +48,7 @@ export function createLevelLoader(entotiFactory: EntityFactories) {
 
                 setupCollision(levelSpec, level);
                 setupBackground(levelSpec, level, backgroundSprites);
-                setupEntities(levelSpec, level, entotiFactory);
+                setupEntities(levelSpec, level, entotiFactory, audios);
 
                 return level;
             });

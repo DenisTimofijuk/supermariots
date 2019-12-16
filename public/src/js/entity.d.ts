@@ -10,6 +10,7 @@ import Level from "./level.js";
 import PlayerKontroller from "./traits/PlayerController.js";
 import Solid from "./traits/Solid.js";
 import Physics from "./traits/Phisics.js";
+import MarioAudioEffects from "./traits/MarioAaudio.js";
 export declare const Sides: {
     TOP: symbol;
     BOTTOM: symbol;
@@ -41,6 +42,7 @@ export default class Entity {
     solid: Solid;
     physics: Physics;
     playerKontroller: PlayerKontroller;
+    saundeffects: MarioAudioEffects;
     pos: Vec2;
     vel: Vec2;
     size: Vec2;
@@ -49,10 +51,12 @@ export default class Entity {
     lifeTime: number;
     bounds: BoundingBox;
     canCollide: boolean;
-    constructor();
+    name: string;
+    constructor(name?: string);
     draw(context: CanvasRenderingContext2D): void;
     finalize(): void;
     collides(candidate: Entity): void;
+    standBy(playerPos: Vec2): void;
     obstruct(side: Symbol, match: GetByIndex): void;
     addTrait(trait: Trait): void;
     update(deltaTime: number, level: Level): void;

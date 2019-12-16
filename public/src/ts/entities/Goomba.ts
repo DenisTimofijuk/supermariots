@@ -12,12 +12,14 @@ export function loadGoomba() {
 }
 
 class Behaviour extends Trait {
+
     constructor() {
         super('behaviour');
     }
 
     collides(us: Entity, them: Entity) {
-        if (us.killable.dead) {
+
+        if (us.killable.dead || them.killable.dead) {
             return;
         }
 
@@ -52,7 +54,7 @@ function createGoombaFactory(sprite: SpriteSheet) {
     }
 
     return function createGoomba() {
-        const goomba = new Entity;
+        const goomba = new Entity('goomba');
         goomba.size.set(16, 16);
         goomba.vel.x = -30;
 

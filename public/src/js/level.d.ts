@@ -3,6 +3,7 @@ import Entity from "./entity.js";
 import { Matrix } from "./math.js";
 import TileColider from "./tileColider.js";
 import EntityCollider from "./EntityColider.js";
+import EntityStandBy from "./EntityStandBy.js";
 export default class Level {
     backgrounds(backgrounds: any, backgroundSprites: any): void;
     gravity: number;
@@ -11,6 +12,7 @@ export default class Level {
     totalTime: number;
     tileColider: TileColider;
     EntityCollider: EntityCollider;
+    entityStandBy: EntityStandBy;
     constructor();
     setCollisionGrid(matrix: Matrix): void;
     update(deltaTime: number): void;

@@ -19,7 +19,7 @@ class Behaviour extends Trait {
         this.panicSpeed = 300;
     }
     collides(us, them) {
-        if (us.killable.dead) {
+        if (us.killable.dead || them.killable.dead) {
             return;
         }
         if (them.stomper) {
@@ -109,7 +109,7 @@ function createKoopaFactory(sprite) {
         sprite.draw(routeAnim(this), context, 0, 0, this.vel.x < 0);
     }
     return function createKoopa() {
-        const koopa = new Entity;
+        const koopa = new Entity('koopa');
         koopa.size.set(16, 16);
         koopa.offset.y = 8;
         koopa.addTrait(new Physics());

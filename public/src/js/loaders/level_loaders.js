@@ -1,7 +1,8 @@
 import { loadSpriteSheet, loadLevelJSON } from "../loaders.js";
 import Level from "../level.js";
-import { createBackgroundLayer, createSpriteLayer } from "../layers.js";
+import { createSpriteLayer } from "../layers.js";
 import { Matrix } from "../math.js";
+import { createBackgroundLayer } from "../layers/background.js";
 function setupCollision(levelSpec, level) {
     const mergedTiles = levelSpec.layers.reduce((mergedTiles, layerSpec) => {
         return mergedTiles.concat(layerSpec.tiles);
@@ -16,17 +17,17 @@ function setupBackground(levelSpec, level, backgroundSprites) {
         level.comp.layers.push(backgroundLayer);
     });
 }
-function setupEntities(levelSpec, level, entotiFactory) {
+function setupEntities(levelSpec, level, entotiFactory, audios) {
     const spriteLayer = createSpriteLayer(level.entities);
     levelSpec.entities.forEach(({ name, pos: [x, y] }) => {
         const createEntity = entotiFactory[name];
-        const entity = createEntity();
+        const entity = createEntity(audios);
         entity.pos.set(x, y);
         level.entities.add(entity);
     });
     level.comp.layers.push(spriteLayer);
 }
-export function createLevelLoader(entotiFactory) {
+export function createLevelLoader(entotiFactory, audios) {
     return function loadLevel(name) {
         return loadLevelJSON(`../json/levels/${name}.json`).then(levelSpec => Promise.all([
             levelSpec,
@@ -36,7 +37,7 @@ export function createLevelLoader(entotiFactory) {
             const level = new Level();
             setupCollision(levelSpec, level);
             setupBackground(levelSpec, level, backgroundSprites);
-            setupEntities(levelSpec, level, entotiFactory);
+            setupEntities(levelSpec, level, entotiFactory, audios);
             return level;
         });
     };

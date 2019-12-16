@@ -8,4 +8,5 @@ export default class Go extends Trait {
     deceleration: number;
     constructor();
     update(entity: Entity, deltaTime: number): void;
+    dead(entity: Entity): void;
 }

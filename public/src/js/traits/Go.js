@@ -11,6 +11,10 @@ export default class Go extends Trait {
         this.deceleration = 300;
     }
     update(entity, deltaTime) {
+        if (entity.killable.dead) {
+            this.dead(entity);
+            return;
+        }
         const absX = Math.abs(entity.vel.x);
         if (this.dir !== 0) {
             entity.vel.x += this.acceleration * deltaTime * this.dir;
@@ -33,6 +37,9 @@ export default class Go extends Trait {
         const drag = this.dragFactor * entity.vel.x * absX;
         entity.vel.x -= drag;
         this.distance += absX * deltaTime;
+    }
+    dead(entity) {
+        entity.vel.x = 0;
     }
 }
 //# sourceMappingURL=Go.js.map

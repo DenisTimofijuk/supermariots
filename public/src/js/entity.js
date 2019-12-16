@@ -6,6 +6,7 @@ export const Sides = {
     LEFT: Symbol('left'),
     RIGHT: Symbol('right')
 };
+const STANDBY_RANGE = 366;
 export class Trait {
     constructor(name) {
         this.NAME = name;
@@ -27,7 +28,8 @@ export class Trait {
     }
 }
 export default class Entity {
-    constructor() {
+    constructor(name) {
+        this.name = name ? name : '';
         this.canCollide = true;
         this.pos = new Vec2(0, 0);
         this.vel = new Vec2(0, 0);
@@ -48,6 +50,15 @@ export default class Entity {
         this.traits.forEach(trait => {
             trait.collides(this, candidate);
         });
+    }
+    standBy(playerPos) {
+        var _this = this;
+        function _setMode(flag) {
+            if (_this.physics !== undefined && _this.physics.enabled !== undefined) {
+                _this.physics.enabled = flag;
+            }
+        }
+        _setMode(Math.abs(playerPos.x - this.pos.x) < STANDBY_RANGE);
     }
     obstruct(side, match) {
         this.traits.forEach(trait => {

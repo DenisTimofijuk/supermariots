@@ -17,11 +17,9 @@ export default class Killable extends Trait {
     }
     onScreenHandler(y) {
         if (y > MAX_ENTITY_POS) {
-            console.log("onScreenHandler => kill under");
             this.kill();
         }
         if (y < MIN_ENTITY_POS) {
-            console.log("onScreenHandler => kill over");
             this.kill();
         }
     }
