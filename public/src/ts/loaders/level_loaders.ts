@@ -1,6 +1,6 @@
 import { loadSpriteSheet, loadLevelJSON } from "../loaders.js";
 import Level from "../level.js";
-import { createSpriteLayer } from "../layers.js";
+import { createSpriteLayer } from "../layers/sprites.js";
 import { Matrix } from "../math.js";
 import SpriteSheet from "../SpriteSheet.js";
 import { level_1_1, Tile_Element, EntityFactories, json_File_Names, Pattern_Element, Rng } from "../IAT.js";

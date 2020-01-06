@@ -1,8 +1,9 @@
 import Level from "./level";
 import Camera from "./camera";
-import { createCollisionLayer, createCameraLayer } from "./layers.js";
+import { createCameraLayer } from "./layers/camera.js";
 import { setUpMouseControl } from "./debug.js";
 import Entity from "./entity";
+import { createCollisionLayer } from "./layers/collision.js";
 
 export default function initDebugger(level: Level, camera: Camera, canvas: HTMLCanvasElement, mario: Entity, enable = false) {
     if(!enable){
@@ -13,5 +14,5 @@ export default function initDebugger(level: Level, camera: Camera, canvas: HTMLC
         createCollisionLayer(level),
         createCameraLayer(camera)
     );
-    setUpMouseControl(canvas, mario, camera);
+    //setUpMouseControl(canvas, mario, camera);
 }

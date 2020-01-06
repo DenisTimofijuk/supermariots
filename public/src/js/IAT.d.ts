@@ -11,7 +11,8 @@ export declare type json_File_Names = '1-1' | 'overworld' | 'Mario' | 'goomba' |
 export declare type TileType = 'ground';
 export declare type Pattern = 'pipe-2h' | 'pipe-3h' | 'pipe-4h' | 'pipe-2h' | Pipe | 'cloud-single';
 export declare type Trait_NAME = 'jump' | 'move' | 'velocity' | 'go' | 'walk' | 'pendulumMove' | 'behaviour' | 'stomper' | 'killable' | 'playerKontroller' | 'solid' | 'physics' | 'saundeffects';
-export declare type SpriteSheetNames = TileName | Mario | Pipe | Cloud | Goomba | Koopa;
+export declare type FontName = string;
+export declare type SpriteSheetNames = TileName | Mario | Pipe | Cloud | Goomba | Koopa | FontName;
 export declare type Anim = (distance: number) => SpriteSheetNames;
 export declare type EntityFunction = (audios: SoundEffects) => Entity;
 export declare type EntityFactories = {

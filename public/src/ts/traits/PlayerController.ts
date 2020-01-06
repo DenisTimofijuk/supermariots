@@ -5,14 +5,21 @@ import { Vec2 } from "../math.js";
 export default class PlayerController extends Trait {
     public player!: Entity;
     public checkPoint:Vec2;
+    public time:number;
+    public score:number;
 
     constructor() {
         super('playerKontroller');
         this.checkPoint = new Vec2(0,0);
+        this.time = 300;
+        this.score = 0;
     }
 
     setPlayer(entity: Entity) {
         this.player = entity;
+        this.player.stomper.onStomp = () => {
+            this.score += 100; //TODO calculate scrore only for goombas. Minus fro koopas (in the end should be coded message with the key)
+        }
     }
 
     update(entity: Entity, deltaTime: number, level: Level) {
@@ -20,6 +27,8 @@ export default class PlayerController extends Trait {
             this.player.killable.revive();
             this.player.pos.set(this.checkPoint.x, this.checkPoint.y);
             level.entities.add(this.player)
+        }else{
+            this.time -= deltaTime * 2; //TODO kill when time is finished;
         }
 
         this.player.killable.onScreenHandler(this.player.pos.y);

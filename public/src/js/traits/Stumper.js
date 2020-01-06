@@ -6,6 +6,8 @@ export default class Stomper extends Trait {
         this.playStomp = false;
         this.cycleDellay = 0;
     }
+    onStomp(us, them) {
+    }
     bounce(us, them) {
         us.bounds.bottom = them.bounds.top;
         us.vel.y = -this.bounceSpeed;
@@ -16,6 +18,7 @@ export default class Stomper extends Trait {
         }
         if (us.vel.y > them.vel.y) {
             this.bounce(us, them);
+            this.onStomp(us, them);
             this.playStomp = true;
         }
     }

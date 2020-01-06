@@ -8,8 +8,13 @@ import PlayerController from "./traits/PlayerController.js";
 import { audioLoader } from "./loaders/audio_loader.js";
 import { loadImage } from "./loaders.js";
 import initDebugger from "./debugger.js";
+import { loadFont } from "./loaders/font_loader.js";
+import { createDashboardLayer } from "./layers/dashboard.js";
+import { createGameSettingsWindow } from "./game settings window.js";
 
-function createPlayerENviroment(playerEntity:Entity) {
+export type AudioSett = { bg_music_enabled: boolean, sound_effects_enabled: boolean, sound_level: string }
+
+function createPlayerENviroment(playerEntity: Entity) {
     const playerEnv = new Entity();
     const playerControl = new PlayerController();
     playerControl.checkPoint.set(64, 64);
@@ -18,34 +23,15 @@ function createPlayerENviroment(playerEntity:Entity) {
     return playerEnv;
 }
 
-function initGameStart() {
-    //create button
-    //on click run timer.start()
-    //display text from last episode
-    //display game options:
-    //bg audio
-    //sound effects enabled
-    //sound level
-}
-
-function getAutioParameters(){
-    const bg_music_node = document.getElementById('bg_music') as HTMLInputElement;
-    const sound_effects_node = document.getElementById('sound_effects') as HTMLInputElement;
-    const sound_level_node = document.getElementById('sound_level') as HTMLInputElement;
-
-    const audioOptions = {
-        bg_music_enabled: bg_music_node.checked,
-        sound_effects_enabled: sound_effects_node.checked,
-        sound_level: sound_level_node.value
-    }
-
-    return audioOptions;
-}
-
-async function main(canvas:HTMLCanvasElement) {
-    const audios = await audioLoader(getAutioParameters());
+async function main(canvas: HTMLCanvasElement, audioSettingd: AudioSett) {
+    const audios = await audioLoader(audioSettingd);
     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-    const entityFactory = await loadEntities();
+
+    const [entityFactory, font] = await Promise.all([
+        loadEntities(),
+        loadFont()
+    ]);
+
     const LoadLevel = await createLevelLoader(entityFactory, audios);
     const level = await LoadLevel('1-1');
 
@@ -57,8 +43,9 @@ async function main(canvas:HTMLCanvasElement) {
 
     const input = setUpKeyboard(mario);
     input.listenTo(window);
-    
+
     initDebugger(level, camera, canvas, mario, false);
+    level.comp.layers.push(createDashboardLayer(font, playerEnv));
 
     const timer = new Timer()
     timer.update = function update(deltaTime) {
@@ -67,29 +54,48 @@ async function main(canvas:HTMLCanvasElement) {
         // max camera position calculations:
         // (last tile x poxition - tile width + 1) * tile width
         // (211-16 + 1)*16 = 3136
-        camera.pos.x = Math.min( Math.max(0, mario.pos.x - 100), 3136); 
+        camera.pos.x = Math.min(Math.max(0, mario.pos.x - 100), 3136);
         level.comp.draw(ctx, camera);
+
     }
     timer.start();
 }
 
 async function initGame() {
-    //show picture of the game, and initiate only on button start;
     const canvas = document.getElementById('gameScreen') as HTMLCanvasElement;
-
-    main(canvas);
-
-    return;
-    
+    const font = await loadFont();
     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
     const coverIMG = await loadImage('../img/cover.png');
-    ctx.drawImage(coverIMG, 0, 0);
+    var audioSettingd = {
+        bg_music_enabled: true,
+        sound_effects_enabled: true,
+        sound_level: '100'
+    }
 
-    const startGame = document.getElementById('start_game') as HTMLInputElement;
-    startGame.addEventListener('click', function () {
-        startGame.disabled = true;
-        main(canvas);
-    })
+    drawIntroScreen(audioSettingd);
+
+    window.addEventListener('keyup', canvasEventHandler);
+
+    function canvasEventHandler(e: KeyboardEvent) {
+        if (e.code == 'KeyS') {
+            audioSettingd.sound_effects_enabled = !audioSettingd.sound_effects_enabled;
+            drawIntroScreen(audioSettingd);
+        }
+        if (e.code == 'KeyM') {
+            audioSettingd.bg_music_enabled = !audioSettingd.bg_music_enabled;
+            drawIntroScreen(audioSettingd);
+        }
+        if (e.code == 'Space') {
+            window.removeEventListener('keyup', canvasEventHandler);
+            main(canvas, audioSettingd);
+        }
+    }
+
+    function drawIntroScreen(audioSettingd: AudioSett) {
+        const gameSettingsWindow = createGameSettingsWindow(font, audioSettingd);
+        ctx.drawImage(coverIMG, 0, 0);
+        ctx.drawImage(gameSettingsWindow, 50, 50);
+    }
 }
 
 initGame()

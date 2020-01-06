@@ -49,7 +49,7 @@ export default class MarioAudioEffects extends Trait {
 
     play_theme(force = false){
         if(this.sounds.overworld.audio.ended || this.sounds.overworld.audio.currentTime == 0 || force){
-            //this.sounds.overworld.play();
+            this.sounds.overworld.play();
         }      
     }
 }

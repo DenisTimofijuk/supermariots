@@ -10,8 +10,8 @@ declare type AudioOptions = {
 export declare function audioLoader(option: AudioOptions): Promise<SoundEffects>;
 declare class Sound {
     audio: HTMLAudioElement;
-    options: AudioOptions;
-    constructor(audio: HTMLAudioElement, options: AudioOptions);
+    enabled: boolean;
+    constructor(audio: HTMLAudioElement, flag: boolean);
     play(): void;
     stop(): void;
 }

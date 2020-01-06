@@ -51,7 +51,8 @@ export function audioLoader(option:AudioOptions): Promise<SoundEffects> {
     return new Promise(resolve => {
         audios.forEach(async audioSpec => {
             getAudio(audioSpec.name, (audio: HTMLAudioElement) => {
-                soundEffects[audioSpec.name] = new Sound(audio, option);
+                const flag = audioSpec.name == 'overworld' ? option.bg_music_enabled : option.sound_effects_enabled;
+                soundEffects[audioSpec.name] = new Sound(audio, flag);
                 i++;
                 if (i == audios.length) {
                     resolve(soundEffects);
@@ -62,7 +63,6 @@ export function audioLoader(option:AudioOptions): Promise<SoundEffects> {
 }
 
 function getAudio(name: string, callback: Function) {
-    //const audio = new Audio(url);
     const audio = document.getElementById(name) as HTMLAudioElement;
     audio.addEventListener('loadeddata', () => {
         callback(audio);
@@ -72,19 +72,18 @@ function getAudio(name: string, callback: Function) {
 
 class Sound {
     public audio: HTMLAudioElement;
-    public options: AudioOptions;
+    public enabled: boolean ;
 
-    constructor(audio: HTMLAudioElement, options:AudioOptions) {
-        this.options = options;
+    constructor(audio: HTMLAudioElement, flag:boolean) {
+        this.enabled = flag;
         this.audio = audio;
         this.audio.setAttribute("preload", "auto");
         this.audio.setAttribute("controls", "none");
-        //this.audio.setAttribute("allow", "autoplay");
         this.audio.style.display = "none";
     }
 
     play() {
-        if(!this.options.sound_effects_enabled){
+        if(!this.enabled){
             return;
         }
         if (this.audio.duration > 0) {
@@ -97,7 +96,7 @@ class Sound {
     }
 
     stop() {
-        if(!this.options.sound_effects_enabled){
+        if(!this.enabled){
             return;
         }
         this.audio.pause();
