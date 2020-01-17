@@ -76,4 +76,3 @@ export default class Entity {
         this.lifeTime += deltaTime;
     }
 }
-//# sourceMappingURL=entity.js.map

@@ -32,4 +32,3 @@ export class Vec2 {
         this.y = y;
     }
 }
-//# sourceMappingURL=math.js.map

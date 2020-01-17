@@ -44,4 +44,3 @@ export default class SpriteSheet {
         this.draw(name, ctx, x * this.width, y * this.height);
     }
 }
-//# sourceMappingURL=SpriteSheet.js.map

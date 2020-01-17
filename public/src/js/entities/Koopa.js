@@ -111,7 +111,8 @@ function createKoopaFactory(sprite) {
     return function createKoopa() {
         const koopa = new Entity('koopa');
         koopa.size.set(16, 16);
-        koopa.offset.y = 8;
+        koopa.offset.y = 2;
+        koopa.offset.x = 1;
         koopa.addTrait(new Physics());
         koopa.addTrait(new Solid());
         koopa.addTrait(new PendulumWalk());
@@ -121,4 +122,3 @@ function createKoopaFactory(sprite) {
         return koopa;
     };
 }
-//# sourceMappingURL=Koopa.js.map

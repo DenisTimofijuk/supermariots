@@ -47,4 +47,3 @@ export function loadSpriteSheet(name) {
         return sprites;
     });
 }
-//# sourceMappingURL=loaders.js.map

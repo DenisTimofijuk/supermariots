@@ -20,4 +20,3 @@ export function setUpKeyboard(mario) {
     });
     return input;
 }
-//# sourceMappingURL=input.js.map

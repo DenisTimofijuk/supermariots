@@ -25,4 +25,3 @@ export function loadFont() {
         return new Font(fontSheet, size);
     });
 }
-//# sourceMappingURL=font_loader.js.map

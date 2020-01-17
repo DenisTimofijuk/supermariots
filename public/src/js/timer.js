@@ -27,4 +27,3 @@ export default class Timer {
         this.enqueue();
     }
 }
-//# sourceMappingURL=timer.js.map

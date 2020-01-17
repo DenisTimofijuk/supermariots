@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-      "watch": true,
+      "watch": false,
       "target": "esnext",
       "lib": ["dom", "es2017"],
       "declaration": true,
       "removeComments": true,
       "preserveConstEnums": true,
       "moduleResolution":"node",
-      "sourceMap": true,
+      "sourceMap": false,
       "outDir": "./public/src/js",
       "rootDir": "./public/src/ts",
       "strict":true,

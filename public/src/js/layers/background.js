@@ -30,4 +30,3 @@ export function createBackgroundLayer(level, tiles, sprites) {
         context.drawImage(buffer, -camera.pos.x % 16, -camera.pos.y);
     };
 }
-//# sourceMappingURL=background.js.map

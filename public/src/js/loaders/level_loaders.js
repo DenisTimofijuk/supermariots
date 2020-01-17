@@ -112,4 +112,3 @@ function* expandTiles(tiles, patterns) {
     yield* walkTiles(tiles, 0, 0);
 }
 ;
-//# sourceMappingURL=level_loaders.js.map

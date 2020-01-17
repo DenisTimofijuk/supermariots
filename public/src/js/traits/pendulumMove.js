@@ -22,4 +22,3 @@ export default class PendulumMove extends Trait {
         }
     }
 }
-//# sourceMappingURL=pendulumMove.js.map

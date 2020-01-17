@@ -14,4 +14,3 @@ export default class EntityCollider {
         });
     }
 }
-//# sourceMappingURL=EntityColider.js.map

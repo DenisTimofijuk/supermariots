@@ -7,10 +7,11 @@ import Entity from "./entity.js";
 import PlayerController from "./traits/PlayerController.js";
 import { audioLoader } from "./loaders/audio_loader.js";
 import { loadImage } from "./loaders.js";
-import initDebugger from "./debugger.js";
 import { loadFont } from "./loaders/font_loader.js";
-import { createDashboardLayer } from "./layers/dashboard.js";
-import { createGameSettingsWindow } from "./game settings window.js";
+import { createDashboardLayer, createGameOverLayer } from "./layers/dashboard.js";
+import { createGameSettingsWindow, createGameLoadingWindow } from "./game settings window.js";
+import ContexMenu from "./contexmenu.js";
+import { createLabelsLayer } from "./layers/labels.js";
 function createPlayerENviroment(playerEntity) {
     const playerEnv = new Entity();
     const playerControl = new PlayerController();
@@ -34,12 +35,15 @@ async function main(canvas, audioSettingd) {
     level.entities.add(playerEnv);
     const input = setUpKeyboard(mario);
     input.listenTo(window);
-    initDebugger(level, camera, canvas, mario, false);
+    const ctxmenu = new ContexMenu(canvas, level);
     level.comp.layers.push(createDashboardLayer(font, playerEnv));
+    level.comp.layers.push(createGameOverLayer(font, playerEnv));
+    level.comp.layers.push(createLabelsLayer(font));
     const timer = new Timer();
     timer.update = function update(deltaTime) {
         level.update(deltaTime);
-        camera.pos.x = Math.min(Math.max(0, mario.pos.x - 100), 3136);
+        ctxmenu.update(level);
+        camera.pos.x = Math.min(Math.max(0, mario.pos.x - 100), 4544);
         level.comp.draw(ctx, camera);
     };
     timer.start();
@@ -67,6 +71,7 @@ async function initGame() {
         }
         if (e.code == 'Space') {
             window.removeEventListener('keyup', canvasEventHandler);
+            drawLoadingScreen();
             main(canvas, audioSettingd);
         }
     }
@@ -75,6 +80,10 @@ async function initGame() {
         ctx.drawImage(coverIMG, 0, 0);
         ctx.drawImage(gameSettingsWindow, 50, 50);
     }
+    function drawLoadingScreen() {
+        const loadingWindow = createGameLoadingWindow(font);
+        ctx.drawImage(coverIMG, 0, 0);
+        ctx.drawImage(loadingWindow, 50, 50);
+    }
 }
 initGame();
-//# sourceMappingURL=app.js.map

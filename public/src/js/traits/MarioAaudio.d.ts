@@ -8,5 +8,5 @@ export default class MarioAudioEffects extends Trait {
     play_jump(): void;
     play_stomp(): void;
     play_dead(): void;
-    play_theme(force?: boolean): void;
+    play_theme(): void;
 }

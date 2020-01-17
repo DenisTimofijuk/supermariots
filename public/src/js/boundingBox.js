@@ -35,4 +35,3 @@ export default class BoundingBox {
         this.pos.x = x - (this.size.x + this.offset.x);
     }
 }
-//# sourceMappingURL=boundingBox.js.map

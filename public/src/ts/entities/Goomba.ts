@@ -40,10 +40,11 @@ class Behaviour extends Trait {
 
 function createGoombaFactory(sprite: SpriteSheet) {
     const walkAnim = sprite.animations.get('walk') as Anim;
+    const deadAnim = sprite.animations.get('dead') as Anim;
 
     function routeAnim(goomba: Entity) {
         if (goomba.killable.dead) {
-            return 'flat';
+            return deadAnim(goomba.lifeTime);
         }
 
         return walkAnim(goomba.lifeTime);
@@ -56,6 +57,7 @@ function createGoombaFactory(sprite: SpriteSheet) {
     return function createGoomba() {
         const goomba = new Entity('goomba');
         goomba.size.set(16, 16);
+        goomba.offset.y = 4;
         goomba.vel.x = -30;
 
         goomba.addTrait(new Physics());

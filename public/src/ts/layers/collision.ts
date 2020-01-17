@@ -9,7 +9,7 @@ function createEntityLayer(entities:Set<Entity>) {
         entities.forEach(entity => {
             contex.beginPath();
             contex.rect(
-                entity.pos.x - camera.pos.x, 
+                entity.offset.x + entity.pos.x - camera.pos.x, 
                 entity.offset.y + entity.pos.y - camera.pos.y, 
                 entity.size.x, 
                 entity.size.y

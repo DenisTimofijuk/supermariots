@@ -52,4 +52,3 @@ function createMArioFactory(sprite) {
         return mario;
     };
 }
-//# sourceMappingURL=Mario.js.map

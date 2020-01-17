@@ -11,4 +11,3 @@ export function createSpriteLayer(entities, width = 64, height = 64) {
         });
     };
 }
-//# sourceMappingURL=sprites.js.map

@@ -1,8 +1,8 @@
-import Entity, { Sides, Trait } from "../entity.js";
+import Entity, { Trait } from "../entity.js";
 import { loadSpriteSheet } from "../loaders.js";
 import SpriteSheet from "../SpriteSheet.js";
 import PendulumWalk from "../traits/pendulumMove.js";
-import { Anim, Koopa } from "../IAT.js";
+import { Koopa } from "../IAT.js";
 import Killable from "../traits/Killable.js";
 import Solid from "../traits/Solid.js";
 import Physics from "../traits/Phisics.js";
@@ -131,7 +131,8 @@ function createKoopaFactory(sprite: SpriteSheet) {
     return function createKoopa() {
         const koopa = new Entity('koopa');
         koopa.size.set(16, 16);
-        koopa.offset.y = 8;
+        koopa.offset.y = 2;
+        koopa.offset.x = 1;
 
         koopa.addTrait(new Physics());
         koopa.addTrait(new Solid());
@@ -144,6 +145,3 @@ function createKoopaFactory(sprite: SpriteSheet) {
         return koopa;
     }
 }
-
-//TODO: start move only if Mario pos is in reasonable radius of this Entity, to have better user expierance;
-//TODO: create separate AudioEffects class only for Koopa

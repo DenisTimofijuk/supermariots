@@ -6,4 +6,3 @@ export function createCameraLayer(cameraToDraw) {
         contex.stroke();
     };
 }
-//# sourceMappingURL=camera.js.map

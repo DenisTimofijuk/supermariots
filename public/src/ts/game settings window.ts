@@ -6,6 +6,12 @@ function displayTitle(font: FontClass, ctx: CanvasRenderingContext2D) {
     font.print('GAME SETTINGS', ctx, 20, LINE1)
 }
 
+function displayLoading(font: FontClass, ctx: CanvasRenderingContext2D) {
+    const LINE1 = font.size;
+    font.print('LOADING', ctx, 45, LINE1*7)
+    font.print('PLEASE WAIT...', ctx, 20, LINE1*9)
+}
+
 function displaySoundEffects(font: FontClass, ctx: CanvasRenderingContext2D, status: boolean) {
     const LINE = font.size * 3;
     const x = 20;
@@ -29,7 +35,7 @@ function displayControls(font: FontClass, ctx: CanvasRenderingContext2D) {
     const LINE3 = LINE2 + font.size * 2;
     const x = 10;
     font.print('GAME CONTROLS', ctx, x + 10, LINE1);
-    font.print('Z X C', ctx, x, LINE3);
+    font.print('Z', ctx, x, LINE3);
     font.print('AU', ctx, x + 94, LINE2);
     font.print('AL AD AR', ctx, x + 70, LINE3);
 }
@@ -70,8 +76,6 @@ function fillBackground(ctx: CanvasRenderingContext2D, width: number, height: nu
     _background();
     _borderBlack();
     _borderWhite()
-
-    // ctx.globalAlpha = 1.0;
 }
 
 export function createGameSettingsWindow(font: FontClass, audioSettingd: AudioSett) {
@@ -87,6 +91,19 @@ export function createGameSettingsWindow(font: FontClass, audioSettingd: AudioSe
     displayMusic(font, context, audioSettingd.bg_music_enabled);
     displayStartBtn(font, context);
     displayControls(font, context);
+
+    return canvas;
+}
+
+export function createGameLoadingWindow(font: FontClass) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 150;
+    canvas.height = 150;
+    const context = canvas.getContext('2d') as CanvasRenderingContext2D;
+    context.imageSmoothingEnabled = false;
+
+    fillBackground(context, canvas.width, canvas.height);
+    displayLoading(font, context);
 
     return canvas;
 }

@@ -66,4 +66,3 @@ class Sound {
         this.audio.pause();
     }
 }
-//# sourceMappingURL=audio_loader.js.map

@@ -6,13 +6,14 @@ export declare type Koopa = 'walk-1' | 'walk-2' | 'hiding' | 'hidding-with-legs'
 export declare type TileName = 'ground' | 'sky' | 'chocolate' | 'bricks' | 'chance' | 'chance-1' | 'chance-2' | 'chance-3';
 export declare type Pipe = 'pipe-insert-vert-left' | 'pipe-insert-vert-right' | 'pipe-vert-left' | 'pipe-vert-right';
 export declare type Cloud = 'cloud-1-1' | 'cloud-1-2' | 'cloud-1-3' | 'cloud-2-1' | 'cloud-2-2' | 'cloud-2-3';
-export declare type EntityFactoriesName = 'mario' | 'goomba' | 'koopa';
-export declare type json_File_Names = '1-1' | 'overworld' | 'Mario' | 'goomba' | 'koopa';
+export declare type Elevator = 'active' | 'notactive' | 'going';
+export declare type EntityFactoriesName = 'mario' | 'goomba' | 'koopa' | 'elevator';
+export declare type json_File_Names = '1-1' | 'overworld' | 'Mario' | 'goomba' | 'koopa' | 'elevator';
 export declare type TileType = 'ground';
-export declare type Pattern = 'pipe-2h' | 'pipe-3h' | 'pipe-4h' | 'pipe-2h' | Pipe | 'cloud-single';
+export declare type Pattern = 'pipe-2h' | 'pipe-3h' | 'pipe-4h' | 'pipe-2h' | Pipe | 'cloud-single' | 'castle';
 export declare type Trait_NAME = 'jump' | 'move' | 'velocity' | 'go' | 'walk' | 'pendulumMove' | 'behaviour' | 'stomper' | 'killable' | 'playerKontroller' | 'solid' | 'physics' | 'saundeffects';
 export declare type FontName = string;
-export declare type SpriteSheetNames = TileName | Mario | Pipe | Cloud | Goomba | Koopa | FontName;
+export declare type SpriteSheetNames = TileName | Mario | Pipe | Cloud | Goomba | Koopa | FontName | Elevator;
 export declare type Anim = (distance: number) => SpriteSheetNames;
 export declare type EntityFunction = (audios: SoundEffects) => Entity;
 export declare type EntityFactories = {

@@ -32,4 +32,3 @@ export default class Stomper extends Trait {
         }
     }
 }
-//# sourceMappingURL=Stumper.js.map

@@ -3,7 +3,7 @@ function createEntityLayer(entities) {
         contex.strokeStyle = 'red';
         entities.forEach(entity => {
             contex.beginPath();
-            contex.rect(entity.pos.x - camera.pos.x, entity.offset.y + entity.pos.y - camera.pos.y, entity.size.x, entity.size.y);
+            contex.rect(entity.offset.x + entity.pos.x - camera.pos.x, entity.offset.y + entity.pos.y - camera.pos.y, entity.size.x, entity.size.y);
             contex.stroke();
         });
     };
@@ -35,4 +35,3 @@ export function createCollisionLayer(level) {
         drawBoundingBoxes(contex, camera);
     };
 }
-//# sourceMappingURL=collision.js.map

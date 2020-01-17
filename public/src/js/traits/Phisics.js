@@ -21,4 +21,3 @@ export default class Physics extends Trait {
         }
     }
 }
-//# sourceMappingURL=Phisics.js.map

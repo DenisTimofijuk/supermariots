@@ -5,4 +5,3 @@ export function createAnim(frames, frameLen) {
         return frameName;
     };
 }
-//# sourceMappingURL=anim.js.map

@@ -8,4 +8,3 @@ export default class Compositor {
         });
     }
 }
-//# sourceMappingURL=compositor.js.map

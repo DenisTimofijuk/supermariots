@@ -31,9 +31,10 @@ class Behaviour extends Trait {
 }
 function createGoombaFactory(sprite) {
     const walkAnim = sprite.animations.get('walk');
+    const deadAnim = sprite.animations.get('dead');
     function routeAnim(goomba) {
         if (goomba.killable.dead) {
-            return 'flat';
+            return deadAnim(goomba.lifeTime);
         }
         return walkAnim(goomba.lifeTime);
     }
@@ -43,6 +44,7 @@ function createGoombaFactory(sprite) {
     return function createGoomba() {
         const goomba = new Entity('goomba');
         goomba.size.set(16, 16);
+        goomba.offset.y = 4;
         goomba.vel.x = -30;
         goomba.addTrait(new Physics());
         goomba.addTrait(new Solid());
@@ -53,4 +55,3 @@ function createGoombaFactory(sprite) {
         return goomba;
     };
 }
-//# sourceMappingURL=Goomba.js.map

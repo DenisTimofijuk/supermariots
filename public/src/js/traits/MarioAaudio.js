@@ -30,14 +30,13 @@ export default class MarioAudioEffects extends Trait {
             this.sounds.overworld.stop();
             this.sounds.mariodie.play();
             this.sounds.mariodie.audio.onended = function () {
-                _this.play_theme(true);
+                _this.sounds.overworld.audio.currentTime = 0;
             };
         }
     }
-    play_theme(force = false) {
-        if (this.sounds.overworld.audio.ended || this.sounds.overworld.audio.currentTime == 0 || force) {
+    play_theme() {
+        if (this.sounds.overworld.audio.ended || this.sounds.overworld.audio.currentTime == 0) {
             this.sounds.overworld.play();
         }
     }
 }
-//# sourceMappingURL=MarioAaudio.js.map

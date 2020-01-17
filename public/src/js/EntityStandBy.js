@@ -14,4 +14,3 @@ export default class EntityStandBy {
         });
     }
 }
-//# sourceMappingURL=EntityStandBy.js.map

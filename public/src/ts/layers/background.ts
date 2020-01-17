@@ -3,6 +3,7 @@ import { Matrix } from "../math.js";
 import SpriteSheet from "../SpriteSheet.js";
 import TileResolver from "../TileResolver.js";
 import Camera from "../camera.js";
+import { FontClass } from "../loaders/font_loader.js";
 
 export function createBackgroundLayer(level: Level, tiles:Matrix, sprites: SpriteSheet) {
     const resolver = new TileResolver(tiles);

@@ -1,22 +1,22 @@
 {
-    "imageURL": "../img/characters.gif",
+    "imageURL": "../img/characters_c.png",
     "frames": [
         {
             "name": "walk-1",
             "rect": [
-                296,
-                187,
-                16,
-                16
+                77,
+                182,
+                23,
+                23
             ]
         },
         {
             "name": "walk-2",
             "rect": [
-                315,
-                187,
-                16,
-                16
+                100,
+                182,
+                23,
+                23
             ]
         },
         {
@@ -27,6 +27,33 @@
                 16,
                 16
             ]
+        },
+        {
+            "name": "coin-1",
+            "rect": [
+                372,
+                186,
+                15,
+                15
+            ]
+        },
+        {
+            "name": "coin-2",
+            "rect": [
+                390,
+                186,
+                15,
+                15
+            ]
+        },
+        {
+            "name": "coin-3",
+            "rect": [
+                407,
+                186,
+                15,
+                15
+            ]
         }
     ],
     "animations": [
@@ -36,6 +63,15 @@
             "frames": [
                 "walk-1",
                 "walk-2"
+            ]
+        },
+        {
+            "name": "dead",
+            "frameLen": 0.15,
+            "frames": [
+                "coin-1",
+                "coin-2",
+                "coin-3"
             ]
         }
     ]

@@ -6,6 +6,7 @@ export default class PlayerController extends Trait {
     checkPoint: Vec2;
     time: number;
     score: number;
+    gameOver: boolean;
     constructor();
     setPlayer(entity: Entity): void;
     update(entity: Entity, deltaTime: number, level: Level): void;

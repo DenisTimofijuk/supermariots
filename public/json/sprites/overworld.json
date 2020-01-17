@@ -1,5 +1,5 @@
 {
-    "imageURL": "../img/tileset.png",
+    "imageURL": "../img/tileset_c_s_1.png",
     "tileW": 16,
     "tileH": 16,
     "tiles": [
@@ -128,6 +128,216 @@
                 2,
                 21
             ]
+        },
+        {
+            "name": "castle-bricks",
+            "index": [
+                2,
+                0
+            ]
+        },
+        {
+            "name": "castle-arc-top",
+            "index": [
+                12,
+                1
+            ]
+        },
+        {
+            "name": "castle-arc-bottom",
+            "index": [
+                13,
+                1
+            ]
+        },
+        {
+            "name": "castle-top-empty",
+            "index": [
+                11,
+                0
+            ]
+        },
+        {
+            "name": "castle-top-full",
+            "index": [
+                11,
+                1
+            ]
+        },
+        {
+            "name": "castle-window-left",
+            "index": [
+                12,
+                0
+            ]
+        },
+        {
+            "name": "castle-window-right",
+            "index": [
+                14,
+                0
+            ]
+        },
+        {
+            "name": "pol-top-901",
+            "index": [
+                16,
+                8
+            ]
+        },
+        {
+            "name": "pol-top-1",
+            "index": [
+                16,
+                8
+            ]
+        },
+        {
+            "name": "pol-top-2",
+            "index": [
+                16,
+                10
+            ]
+        },
+        {
+            "name": "pol-top-3",
+            "index": [
+                16,
+                12
+            ]
+        },
+        {
+            "name": "pol-body",
+            "index": [
+                16,
+                9
+            ]
+        },
+        {
+            "name": "key",
+            "index": [
+                26,
+                8
+            ]
+        },
+        {
+            "name": "mountain-big-l",
+            "index": [
+                8,
+                8
+            ]
+        },
+        {
+            "name": "mountain-big-top",
+            "index": [
+                9,
+                8
+            ]
+        },
+        {
+            "name": "mountain-big-r",
+            "index": [
+                10,
+                8
+            ]
+        },
+        {
+            "name": "mountain-big-body-dot",
+            "index": [
+                10,
+                9
+            ]
+        },
+        {
+            "name": "mountain-big-body",
+            "index": [
+                9,
+                9
+            ]
+        },
+        {
+            "name": "bush-l",
+            "index": [
+                11,
+                9
+            ]
+        },
+        {
+            "name": "bush-top",
+            "index": [
+                12,
+                9
+            ]
+        },
+        {
+            "name": "bush-r",
+            "index": [
+                13,
+                9
+            ]
+        },
+        {
+            "name": "g2",
+            "index": [
+                5,
+                1
+            ]
+        },
+        {
+            "name": "g2top-l",
+            "index": [
+                5,
+                8
+            ]
+        },
+        {
+            "name": "g2top-m",
+            "index": [
+                6,
+                8
+            ]
+        },
+        {
+            "name": "g2top-r",
+            "index": [
+                7,
+                8
+            ]
+        },
+        {
+            "name": "fence",
+            "index": [
+                5,
+                0
+            ]
+        },
+        {
+            "name": "tree-body",
+            "index": [
+                7,
+                1
+            ]
+        },
+        {
+            "name": "tree-top-s",
+            "index": [
+                13,
+                8
+            ]
+        },
+        {
+            "name": "tree-top-l-t",
+            "index": [
+                14,
+                8
+            ]
+        },
+        {
+            "name": "tree-top-l-b",
+            "index": [
+                14,
+                9
+            ]
         }
     ],
     "animations": [
@@ -140,6 +350,138 @@
                 "chance-2",
                 "chance-3",
                 "chance-2"
+            ]
+        },
+        {
+            "name": "pol-top-901",
+            "frameLen": 0.2,
+            "frames": [
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1"
+            ]
+        },
+        {
+            "name": "pol-top-902",
+            "frameLen": 0.2,
+            "frames": [
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1"
+            ]
+        },
+        {
+            "name": "pol-top-903",
+            "frameLen": 0.2,
+            "frames": [
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-3",
+                "pol-top-3",
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1"
+            ]
+        },
+        {
+            "name": "pol-top-904",
+            "frameLen": 0.2,
+            "frames": [
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1"
+            ]
+        },
+        {
+            "name": "pol-top-905",
+            "frameLen": 0.2,
+            "frames": [
+                "pol-top-3",
+                "pol-top-3",
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-3",
+                "pol-top-3",
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1"
+            ]
+        },
+        {
+            "name": "pol-top-906",
+            "frameLen": 0.2,
+            "frames": [
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1"
+            ]
+        },
+        {
+            "name": "pol-top-907",
+            "frameLen": 0.2,
+            "frames": [
+                "pol-top-3",
+                "pol-top-3",
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-3",
+                "pol-top-3",
+                "pol-top-3",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1",
+                "pol-top-1"
             ]
         }
     ]

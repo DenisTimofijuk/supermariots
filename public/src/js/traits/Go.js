@@ -42,4 +42,3 @@ export default class Go extends Trait {
         entity.vel.x = 0;
     }
 }
-//# sourceMappingURL=Go.js.map

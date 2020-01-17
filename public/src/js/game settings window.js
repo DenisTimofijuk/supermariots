@@ -2,6 +2,11 @@ function displayTitle(font, ctx) {
     const LINE1 = font.size;
     font.print('GAME SETTINGS', ctx, 20, LINE1);
 }
+function displayLoading(font, ctx) {
+    const LINE1 = font.size;
+    font.print('LOADING', ctx, 45, LINE1 * 7);
+    font.print('PLEASE WAIT...', ctx, 20, LINE1 * 9);
+}
 function displaySoundEffects(font, ctx, status) {
     const LINE = font.size * 3;
     const x = 20;
@@ -23,7 +28,7 @@ function displayControls(font, ctx) {
     const LINE3 = LINE2 + font.size * 2;
     const x = 10;
     font.print('GAME CONTROLS', ctx, x + 10, LINE1);
-    font.print('Z X C', ctx, x, LINE3);
+    font.print('Z', ctx, x, LINE3);
     font.print('AU', ctx, x + 94, LINE2);
     font.print('AL AD AR', ctx, x + 70, LINE3);
 }
@@ -74,4 +79,13 @@ export function createGameSettingsWindow(font, audioSettingd) {
     displayControls(font, context);
     return canvas;
 }
-//# sourceMappingURL=game settings window.js.map
+export function createGameLoadingWindow(font) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 150;
+    canvas.height = 150;
+    const context = canvas.getContext('2d');
+    context.imageSmoothingEnabled = false;
+    fillBackground(context, canvas.width, canvas.height);
+    displayLoading(font, context);
+    return canvas;
+}

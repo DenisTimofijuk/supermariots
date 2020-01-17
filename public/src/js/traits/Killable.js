@@ -34,4 +34,3 @@ export default class Killable extends Trait {
         }
     }
 }
-//# sourceMappingURL=Killable.js.map

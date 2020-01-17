@@ -26,4 +26,3 @@ export default class Solid extends Trait {
         }
     }
 }
-//# sourceMappingURL=Solid.js.map

@@ -64,4 +64,3 @@ export default class TileCollider {
         this.checkY(entity);
     }
 }
-//# sourceMappingURL=tileColider.js.map

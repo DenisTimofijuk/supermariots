@@ -53,4 +53,3 @@ export default class Jump extends Trait {
         entity.vel.x = 0;
     }
 }
-//# sourceMappingURL=jump.js.map

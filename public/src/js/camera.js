@@ -5,4 +5,3 @@ export default class Camera {
         this.size = new Vec2(256, 224);
     }
 }
-//# sourceMappingURL=camera.js.map

@@ -3,6 +3,10 @@
     margin: auto
 }
 
+.container table{
+    margin: auto;
+}
+
 canvas{
     border: 1px solid brown;
 }
@@ -14,7 +18,7 @@ body{
 #gameScreen{
     display: block;
     image-rendering: pixelated;
-    height: 95vh;
+    height: 70vh;
     margin: auto;
 }
 
@@ -26,3 +30,37 @@ body{
 .controls_table td{
     padding: 5px;
 }
+
+/*context>>*/
+.custom-context-menu{
+    position: absolute;
+    padding: 4px;
+    background-color: white;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    border: 1px solid #dadada;
+    width: 240px;
+}
+
+.ctx-menu-table-cell{
+    padding-left:25px;
+    padding-right:25px;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    font-family: 'Amiko';
+    font-size: 13px;
+}
+
+tr.ctx-menu-table-row-border td{
+    border-top: 1px solid #dadada;
+}
+
+div.custom-context-menu>table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+div.custom-context-menu>table tr.ctx-menu-table-row:hover{
+    background-color: rgb(218, 220, 224);
+    cursor: default;
+}
+/*context<<*/

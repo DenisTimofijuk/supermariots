@@ -48,4 +48,3 @@ export default class TileResolver {
         return matches;
     }
 }
-//# sourceMappingURL=TileResolver.js.map

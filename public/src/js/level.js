@@ -33,4 +33,3 @@ export default class Level {
         this.totalTime += deltaTime;
     }
 }
-//# sourceMappingURL=level.js.map
