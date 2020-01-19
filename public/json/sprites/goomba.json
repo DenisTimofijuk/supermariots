@@ -1,5 +1,5 @@
 {
-    "imageURL": "../img/characters_c.png",
+    "imageURL": "./img/characters_c.png",
     "frames": [
         {
             "name": "walk-1",

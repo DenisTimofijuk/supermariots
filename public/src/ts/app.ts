@@ -73,7 +73,7 @@ async function initGame() {
     const canvas = document.getElementById('gameScreen') as HTMLCanvasElement;
     const font = await loadFont();
     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-    const coverIMG = await loadImage('../img/cover.png');
+    const coverIMG = await loadImage('./img/cover.png'); // ../img/cover.png
     var audioSettingd = {
         bg_music_enabled: true,
         sound_effects_enabled: true,
@@ -95,6 +95,9 @@ async function initGame() {
         }
         if (e.code == 'Space') {
             window.removeEventListener('keyup', canvasEventHandler);
+            const introText = document.getElementById('introText') as HTMLElement;
+            introText.remove();
+
             drawLoadingScreen()
             main(canvas, audioSettingd);
         }

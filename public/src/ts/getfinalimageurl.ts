@@ -25,7 +25,7 @@ async function loadJSON(url:string) {
 }
 
 async function getData(name:string){
-    const urlJSON = await loadJSON(`../json/text/${name}.json`);
+    const urlJSON = await loadJSON(`./json/text/${name}.json`); // ../
     const decoded = decodeURLdata(urlJSON.data);
 
     return decoded;

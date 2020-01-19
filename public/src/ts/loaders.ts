@@ -25,7 +25,7 @@ export function loadSpriteJSON(url:string){
 }
 
 export function loadSpriteSheet(name:json_File_Names){
-    return loadSpriteJSON(`../json/sprites/${name}.json`)
+    return loadSpriteJSON(`./json/sprites/${name}.json`) // ../
     .then(sheetSpec => Promise.all([
         sheetSpec,
         loadImage(sheetSpec.imageURL)

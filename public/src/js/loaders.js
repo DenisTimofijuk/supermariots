@@ -19,7 +19,7 @@ export function loadSpriteJSON(url) {
     return loadJSON(url);
 }
 export function loadSpriteSheet(name) {
-    return loadSpriteJSON(`../json/sprites/${name}.json`)
+    return loadSpriteJSON(`./json/sprites/${name}.json`)
         .then(sheetSpec => Promise.all([
         sheetSpec,
         loadImage(sheetSpec.imageURL)

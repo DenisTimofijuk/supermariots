@@ -29,7 +29,7 @@ function setupEntities(levelSpec, level, entotiFactory, audios) {
 }
 export function createLevelLoader(entotiFactory, audios) {
     return function loadLevel(name) {
-        return loadLevelJSON(`../json/levels/${name}.json`).then(levelSpec => Promise.all([
+        return loadLevelJSON(`./json/levels/${name}.json`).then(levelSpec => Promise.all([
             levelSpec,
             loadSpriteSheet(levelSpec.spriteSheet)
         ]))

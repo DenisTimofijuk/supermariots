@@ -6,7 +6,6 @@ import SpriteSheet from "../SpriteSheet.js";
 import { level_1_1, Tile_Element, EntityFactories, json_File_Names, Pattern_Element, Rng } from "../IAT.js";
 import { SoundEffects } from "./audio_loader.js";
 import { createBackgroundLayer } from "../layers/background.js";
-import { FontClass } from "./font_loader.js";
 
 function setupCollision(levelSpec: level_1_1, level: Level) {
     const mergedTiles = levelSpec.layers.reduce((mergedTiles, layerSpec) => {
@@ -40,7 +39,7 @@ function setupEntities(levelSpec: level_1_1, level: Level, entotiFactory: Entity
 
 export function createLevelLoader(entotiFactory: EntityFactories, audios:SoundEffects) {
     return function loadLevel(name: json_File_Names) {
-        return loadLevelJSON(`../json/levels/${name}.json`).then(levelSpec => Promise.all([
+        return loadLevelJSON(`./json/levels/${name}.json`).then(levelSpec => Promise.all([ // ../json/levels/
             levelSpec,
             loadSpriteSheet(levelSpec.spriteSheet)
         ]))

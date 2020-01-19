@@ -26,19 +26,19 @@ export function audioLoader(option:AudioOptions): Promise<SoundEffects> {
     const audios: Array<Audios> = [
         {
             name: "jumpsmall",
-            url: "../audio/smb_jump-small.wav"
+            url: "./audio/smb_jump-small.wav" // ../
         },
         {
             name: "stomp",
-            url: "../audio/smb_stomp.wav"
+            url: "./audio/smb_stomp.wav" // ../
         },
         {
             name: "overworld",
-            url: "../audio/Overworld_Theme.oga"
+            url: "./audio/Overworld_Theme.oga" // ../
         },
         {
             name: "mariodie",
-            url: "../audio/smb_mariodie.wav"
+            url: "./audio/smb_mariodie.wav" // ../
         }
 
         

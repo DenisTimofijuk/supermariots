@@ -7,6 +7,11 @@
     margin: auto;
 }
 
+#introText{
+    width: 30%;
+    margin: auto;
+}
+
 canvas{
     border: 1px solid brown;
 }
@@ -29,6 +34,10 @@ body{
 
 .controls_table td{
     padding: 5px;
+}
+
+.text-intro{
+    color: white;
 }
 
 /*context>>*/

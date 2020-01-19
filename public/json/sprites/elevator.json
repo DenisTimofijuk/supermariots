@@ -1,5 +1,5 @@
 {
-    "imageURL": "../img/tileset_c_s_1.png",
+    "imageURL": "./img/tileset_c_s_1.png",
     "frames": [
         {
             "name": "active",
