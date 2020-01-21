@@ -13,6 +13,7 @@ import { createDashboardLayer, createGameOverLayer } from "./layers/dashboard.js
 import { createGameSettingsWindow, createGameLoadingWindow } from "./game settings window.js";
 import ContexMenu from "./contexmenu.js";
 import { createLabelsLayer } from "./layers/labels.js";
+import checkBrowser from "./checkBrowser.js";
 
 export type AudioSett = { bg_music_enabled: boolean, sound_effects_enabled: boolean, sound_level: string }
 
@@ -116,4 +117,6 @@ async function initGame() {
     }
 }
 
-initGame()
+if(checkBrowser()){
+    initGame();
+}

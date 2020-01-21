@@ -1,0 +1,55 @@
+/**
+==========================================================
+Scenario:
+----------------------------------------------------------
+
+"Since this challange is not only for the programmers, my task was to make it suitable for all level users.
+Also I tried to keep the things closely to our dailly life in sermo, so I came up with this idea. I created a simple game ' Super Sermonian' it is based on a well known game 'Super Mario'.
+Running timer represents time pressure in our dayly life dealig with the task as well as it requires attention to the details toogether with keeping attention to the main goal."
+Since there are peoples with some advantiges in PC gaming, this challange consists from 2 different parts: first one is simple pasick PC game, but the second one is requiring to have a lot of attention to little details and sharp mind to find out what second move should be. So those with fast reflexes will not gain any advantage against those with slow reflexes. They all will have to pause and think how to beat this quest.
+ */
+
+ //https://sekao.net/pixeljihad/index.html
+
+
+ * kill all TikTakus;
+ * save all Sermogons;
+ * find a hint;
+ * find out the password;
+ * get a key;
+ * read the message;
+ * win a prise;
+
+
+==========================================================
+LT
+----------------------------------------------------------
+Sveiki atvyke i Super Sermonian Pasauli.
+Jusu laukia kelione kupina ispudziu ir netiketumu.
+Jusu tikslas padeti Super Sermonianui nukeliauti iki Sermo pilies.
+Taciau bukite atsargus, pakeliui jusu laukia ivairiausi netiketumai. 
+Siame pasaulyje taip pat gyvena Sermogonai, tai yra energijos saltiniai, kurie buvo netycia isbarstyti po visa pasauly issiblaskiusio programuotojo deka. Tai suzinojes Laiko Lordas, paleido savo pakalikus TikTakus, kad pavogtu ir parnestu visa energija jam.
+Jusu tikslas issaugoti visu Sermogonus ir sunaikinti visus iki vieno TikTakus, kad nepavyktu piktasis Laiko Lordo planas.
+Tik issaugoje Super Sermoniano pasauli nuo Laiko Lordo jus galesite gauti rakta. 
+Pakleiui i pili taip pat ieskokite uzuomenu kaip gauti ir elgtis su raktu.
+Raktas savyje laiko uzkuoduota pranesima. Issiaiskinkite ji ir laimekite apdovanojima.
+==========================================================
+EN
+----------------------------------------------------------
+Welcome to the Super Sermonian World.
+The journey ahead is full of excitement and surprises. Your goal is to help Super Sermonian travel to Sermo Castle. But be careful, there are all kinds of surprises along the way.
+This world is also home to Sermogons, sources of energy that have been accidentally scattered around the world thanks to a distracted programmer. Upon knowing this, the Time Lord released his minions, TikTakus, to steal and bring all that energy to him.
+Your goal is to save all Sermogons and destroy all to one TikTakus, to prevent the evil Time Lord plan. Only by saving the Super Sermonian World from the Time Lord's aspirations can you get the key.
+Once you get up to the castle, also look for tips on how to get and deal with the key. The key contains an encoded message. Find it out and win an award.
+
+Welcome to the Super Sermonian World.
+The journey ahead is full of excitement and surprises. Your goal is to help Super Sermonian travel to Sermo Castle. But be careful, there are all kinds of surprises along the way.
+This world is also home to Sermogons, sources of energy that have been accidentally scattered around the world thanks to a distracted programmer. Upon knowing this, the Time Lord released his minions, TikTacks, to steal and bring all that energy to him.
+Your goal is to save all Sermogons and destroy all TikTacks, to prevent the evil Time Lord’s plan. Only by saving the Super Sermonian World from the Time Lord can you get the key.
+On your way to the castle, look for tips on how to get the key and what to do with it. The key contains an encoded message. Find it and win an award.
+
+
+Congratulations!
+You won the game!
+Please contact Denis immediately and tell him this password:
+"123 The world is saved, give me a prize".

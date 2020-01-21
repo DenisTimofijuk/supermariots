@@ -12,6 +12,7 @@ import { createDashboardLayer, createGameOverLayer } from "./layers/dashboard.js
 import { createGameSettingsWindow, createGameLoadingWindow } from "./game settings window.js";
 import ContexMenu from "./contexmenu.js";
 import { createLabelsLayer } from "./layers/labels.js";
+import checkBrowser from "./checkBrowser.js";
 function createPlayerENviroment(playerEntity) {
     const playerEnv = new Entity();
     const playerControl = new PlayerController();
@@ -88,4 +89,6 @@ async function initGame() {
         ctx.drawImage(loadingWindow, 50, 50);
     }
 }
-initGame();
+if (checkBrowser()) {
+    initGame();
+}
